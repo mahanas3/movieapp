@@ -18,7 +18,7 @@ class _Screen1State extends State<Screen1> with SingleTickerProviderStateMixin {
   TabController? _tabController;
 
   List images = [
-    'assets/images/image1.png',
+    'assets/images/images1.jfif',
     'assets/images/image2.jfif',
     'assets/images/image3.jfif',
     'assets/images/image4.jfif',
