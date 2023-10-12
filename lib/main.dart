@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movieapp/screens/bottomnavigation.dart';
 import 'package:movieapp/screens/nowplaying.dart';
 import 'package:movieapp/screens/screen1.dart';
 import 'package:movieapp/screens/splashscreen.dart';
@@ -14,7 +15,7 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(debugShowCheckedModeBanner: false,
-      home: Screen1(),
+      home: BottomNavigation(),
     );
   }
 }

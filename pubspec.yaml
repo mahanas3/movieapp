@@ -74,22 +74,18 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-     - family: popins
+  fonts:
+     - family: popins5
        fonts:
          - asset: assets/fonts/POPINS.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+  #
+     - family: popins4
+       fonts:
+         - asset: assets/fonts/POPINS.ttf
      - family: popins3
        fonts:
-             - asset: assets/fonts/popins3.ttf
-    #       - asset: fonts/Schyler-Italic.ttf
-    #
+             - asset: assets/fonts/Montserrat.ttf
+
      - family: popins2
        fonts:
          - asset: assets/fonts/popins2.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages

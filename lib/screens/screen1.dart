@@ -19,7 +19,7 @@ class _Screen1State extends State<Screen1> with SingleTickerProviderStateMixin {
 
   List images = [
     'assets/images/image1.png',
-    'assets/images/images2.jfif',
+    'assets/images/image2.jfif',
     'assets/images/image3.jfif',
     'assets/images/image4.jfif',
     'assets/images/image5.jfif'
@@ -41,13 +41,13 @@ class _Screen1State extends State<Screen1> with SingleTickerProviderStateMixin {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const Padding(
-              padding: EdgeInsets.only(top: 50),
+              padding: EdgeInsets.only(top: 50, left: 10),
               child: Align(
                 alignment: Alignment.bottomLeft,
                 child: Text(
                   'What do you want to watch?',
                   style: TextStyle(
-                      fontFamily: 'popins',
+                      fontFamily: 'popins2',
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
                       color: Colors.white),
@@ -57,11 +57,15 @@ class _Screen1State extends State<Screen1> with SingleTickerProviderStateMixin {
             const SizedBox(
               height: 30,
             ),
-            CustomTextField(
-                controller: searchcontroller,
-                text1: 'Search',
-                text2: "Search",
-                icon: const Icon(Icons.search)),
+            SizedBox(
+              height: 50,
+              width: 330,
+              child: CustomTextField(
+                  controller: searchcontroller,
+                  text1: 'Search',
+                  text2: "Search",
+                  icon: const Icon(Icons.search)),
+            ),
             const SizedBox(
               height: 20,
             ),
@@ -101,20 +105,23 @@ class _Screen1State extends State<Screen1> with SingleTickerProviderStateMixin {
                     child: Text(
                       'Now Playing',
                       style:
-                          TextStyle(color: Colors.white, fontFamily: 'popins3'),
+                          TextStyle(color: Colors.white, fontFamily: 'popins2'),
                     ),
                   ),
                   Tab(
-                    child:
-                        Text('Upcoming', style: TextStyle(color: Colors.white)),
+                    child: Text('Upcoming',
+                        style: TextStyle(
+                            color: Colors.white, fontFamily: 'popins2')),
                   ),
                   Tab(
                     child: Text('Top rated',
-                        style: TextStyle(color: Colors.white)),
+                        style: TextStyle(
+                            color: Colors.white, fontFamily: 'popins2')),
                   ),
                   Tab(
-                    child:
-                        Text('Popular', style: TextStyle(color: Colors.white)),
+                    child: Text('Popular',
+                        style: TextStyle(
+                            color: Colors.white, fontFamily: 'popins2')),
                   ),
                 ]),
             Expanded(
@@ -125,7 +132,6 @@ class _Screen1State extends State<Screen1> with SingleTickerProviderStateMixin {
                 Popular()
               ]),
             ),
-
           ],
         ),
       ),

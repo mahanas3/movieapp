@@ -28,6 +28,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         fillColor: const Color(0xff67686D),
         hintText: widget.text1,
         labelText: widget.text2,
+        hintStyle: const TextStyle(color: Colors.white, fontFamily: 'popins2'),
         labelStyle: const TextStyle(
           color: Colors.white38,
           fontFamily: 'popins2',
