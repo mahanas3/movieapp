@@ -5,12 +5,14 @@ class CustomTextField extends StatefulWidget {
       {super.key,
       required this.text1,
       required this.text2,
-      required this.icon,
-      required this.controller});
+      this.icon,
+      required this.controller,
+      this.icon1});
 
   String text1;
   String text2;
-  Widget icon;
+  Widget? icon;
+  Widget? icon1;
 
   final TextEditingController controller;
 
@@ -33,6 +35,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
           color: Colors.white38,
           fontFamily: 'popins2',
         ),
+        prefixIcon: widget.icon1,
+        prefixIconColor: Colors.white,
         suffixIcon: widget.icon,
         suffixIconColor: Colors.white,
         border: const OutlineInputBorder(
