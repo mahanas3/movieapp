@@ -15,6 +15,8 @@ class _CastState extends State<Cast> {
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5L4tr1r6IIW1DxObYZSOAkF1yoiNZwkfk2A&usqp=CAU'
   ];
 
+  List names = ['Tom Holland', 'Zendaya', 'Benedict Cumberbatch', 'Brad Pitt'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,8 +30,16 @@ class _CastState extends State<Cast> {
           itemBuilder: (BuildContext context, int index) {
             return Padding(
               padding: const EdgeInsets.only(top: 20),
-              child: CircleAvatar(
-                backgroundImage: NetworkImage(personimages[index]),
+              child: SingleChildScrollView(scrollDirection: Axis.vertical,clipBehavior: Clip.none,
+                child: Column(
+                  children: [
+                    CircleAvatar(radius: 50,
+                      backgroundImage: NetworkImage(personimages[index]),
+                    ),
+                    const SizedBox(height: 10,),
+                    Text(names[index],style: const TextStyle(color: Colors.white,fontFamily: 'popins2'),)
+                  ],
+                ),
               ),
             );
           },

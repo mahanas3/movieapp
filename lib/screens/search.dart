@@ -35,7 +35,7 @@ class _SearchState extends State<Search> {
             child: Text('Search',
                 style: TextStyle(
                     color: Colors.white,
-                    fontFamily: 'popins3',
+                    fontFamily: 'popins2',
                     fontWeight: FontWeight.w800,
                     fontSize: 20))),
       ),
