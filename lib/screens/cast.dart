@@ -24,9 +24,7 @@ class _CastState extends State<Cast> {
         body: GridView.builder(
           itemCount: personimages.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            mainAxisSpacing: 8.0,
-          ),
+              crossAxisCount: 3, mainAxisSpacing: 1, childAspectRatio: 1 / 1.3),
           itemBuilder: (BuildContext context, int index) {
             return Padding(
               padding: const EdgeInsets.only(top: 20),
