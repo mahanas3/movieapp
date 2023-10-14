@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movieapp/screens/custom_textfiled.dart';
-import 'package:movieapp/signup.dart';
+import 'package:movieapp/screens/signup.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});

@@ -49,7 +49,7 @@ class Signup extends StatelessWidget {
                   child: Text(
                     'Please fill the input below here',
                     style:
-                        TextStyle(fontFamily: 'popins2', color: Colors.white),
+                    TextStyle(fontFamily: 'popins2', color: Colors.white),
                   ),
                 ),
                 const SizedBox(
@@ -144,7 +144,7 @@ class Signup extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const BottomNavigation()));
+                                  const BottomNavigation()));
                         }
                       },
                       child: const Text(
