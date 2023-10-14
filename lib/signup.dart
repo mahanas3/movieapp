@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:movieapp/screens/bottomnavigation.dart';
 import 'package:movieapp/screens/custom_textfiled.dart';
 import 'package:movieapp/screens/login.dart';
 
@@ -17,121 +19,170 @@ class Signup extends StatelessWidget {
 
     final contactcontroller = TextEditingController();
 
+    var _formkey = GlobalKey<FormState>();
+
     return Scaffold(
       backgroundColor: const Color(0xff242A32),
       body: Padding(
         padding: const EdgeInsets.all(18.0),
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 40, top: 60),
-                child: Text(
-                  'Create Account',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 35),
+          child: Form(
+            key: _formkey,
+            child: Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(top: 60),
+                  child: Text(
+                    'Create Account',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+                        fontFamily: 'popins2'),
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 15),
-                child: Text(
-                  'Please fill the input below here',
-                  style: TextStyle(fontFamily: 'popins2', color: Colors.white),
+                const SizedBox(
+                  height: 5,
                 ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              CustomTextField(
+                const Padding(
+                  padding: EdgeInsets.only(left: 6),
+                  child: Text(
+                    'Please fill the input below here',
+                    style:
+                        TextStyle(fontFamily: 'popins2', color: Colors.white),
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                CustomTextField(
                   text1: 'Full Name',
                   text2: 'Name',
                   icon1: const Icon(Icons.contacts_outlined),
-                  controller: namecontroller),
-              const SizedBox(
-                height: 20,
-              ),
-              CustomTextField(
+                  controller: namecontroller,
+                  validator: (value) {
+                    FilteringTextInputFormatter.allow(
+                      RegExp(r"[a-zA-Z]+|\s"),
+                    );
+                    if (value!.isEmpty) return 'Enter valid name';
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                CustomTextField(
                   text1: 'Your No',
                   text2: 'Phone no',
                   icon1: const Icon(Icons.phone_android),
-                  controller: contactcontroller),
-              const SizedBox(
-                height: 20,
-              ),
-              CustomTextField(
+                  controller: contactcontroller,
+                  validator: (value) {
+                    FilteringTextInputFormatter.allow(RegExp(r"[0-9]"));
+                    if (!value!.isNotEmpty) return 'Enter valid phone';
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                CustomTextField(
                   text1: 'Your Email',
                   text2: 'Email',
                   icon1: const Icon(Icons.email_outlined),
-                  controller: emailcontroller1),
-              const SizedBox(
-                height: 20,
-              ),
-              CustomTextField(
+                  controller: emailcontroller1,
+                  validator: (value) {
+                    if (value!.isEmpty ||
+                        !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                            .hasMatch(value!)) {
+                      return 'Enter valid Email!';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                CustomTextField(
                   text1: 'Your password',
                   text2: 'password',
                   icon1: const Icon(Icons.lock_open),
-                  controller: passwordcontroller1),
-              const SizedBox(
-                height: 20,
-              ),
-              CustomTextField(
+                  controller: passwordcontroller1,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Enter a valid password!';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                CustomTextField(
                   text1: 'Confirm your password',
                   text2: 'password',
-                  icon1: const Icon(Icons.email_outlined),
-                  controller: emailcontroller1),
-              const SizedBox(
-                height: 30,
-              ),
-              SizedBox(
-                height: 55,
-                width: 200,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30)),
-                        backgroundColor: const Color(0xff4361EE)),
-                    onPressed: () {},
-                    child: const Text(
-                      'Sign Up',
-                      style:
-                          TextStyle(color: Colors.white, fontFamily: 'popins2'),
-                    )),
-              ),
-              Row(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 40, left: 25),
-                    child: Text(
-                      'Already have an account?',
-                      style:
-                          TextStyle(fontFamily: 'popins2', color: Colors.white),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 40,
-                    ),
-                    child: TextButton(
-                        onPressed: () {
+                  icon1: const Icon(Icons.lock_open),
+                  controller: confirmpassword,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Enter a valid password!';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                SizedBox(
+                  height: 55,
+                  width: 200,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)),
+                          backgroundColor: const Color(0xff4361EE)),
+                      onPressed: () {
+                        if (_formkey.currentState!.validate()) {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const Login()));
-                        },
-                        child: const Text(
-                          'SignIn',
-                          style: TextStyle(
-                              color: Color(0xff4361EE), fontFamily: 'popins2'),
-                        )),
-                  )
-                ],
-              )
-            ],
+                                  builder: (context) =>
+                                      const BottomNavigation()));
+                        }
+                      },
+                      child: const Text(
+                        'Sign Up',
+                        style: TextStyle(
+                            color: Colors.white, fontFamily: 'popins2'),
+                      )),
+                ),
+                Row(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(top: 40, left: 30),
+                      child: Text(
+                        'Already have an account?',
+                        style: TextStyle(
+                            fontFamily: 'popins2', color: Colors.white),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 40, left: 10),
+                      child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Login()));
+                          },
+                          child: const Text(
+                            'SignIn',
+                            style: TextStyle(
+                                color: Color(0xff4361EE),
+                                fontFamily: 'popins2'),
+                          )),
+                    )
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
