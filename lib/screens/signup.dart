@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:movieapp/screens/bottomnavigation.dart';
+import 'package:movieapp/provider/firebase_provider.dart';
 import 'package:movieapp/screens/custom_textfiled.dart';
 import 'package:movieapp/screens/login.dart';
+import 'package:provider/provider.dart';
 
 class Signup extends StatelessWidget {
   const Signup({super.key});
@@ -49,7 +50,7 @@ class Signup extends StatelessWidget {
                   child: Text(
                     'Please fill the input below here',
                     style:
-                    TextStyle(fontFamily: 'popins2', color: Colors.white),
+                        TextStyle(fontFamily: 'popins2', color: Colors.white),
                   ),
                 ),
                 const SizedBox(
@@ -140,11 +141,10 @@ class Signup extends StatelessWidget {
                           backgroundColor: const Color(0xff4361EE)),
                       onPressed: () {
                         if (_formkey.currentState!.validate()) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                  const BottomNavigation()));
+                          context.read<FirebaseProvider>().signUpProvider(
+                              emailcontroller1.text,
+                              passwordcontroller1.text,
+                              context);
                         }
                       },
                       child: const Text(

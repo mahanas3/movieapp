@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:movieapp/provider/firebase_provider.dart';
 import 'package:movieapp/screens/custom_textfiled.dart';
 import 'package:movieapp/screens/signup.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -92,10 +94,10 @@ class Login extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20)),
                           backgroundColor: const Color(0xff4361EE)),
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Signup()));
+                        context.read<FirebaseProvider>().loginProvider(
+                            emailcontroller.text,
+                            passwordcontroller.text,
+                            context);
                       },
                       child: const Text(
                         'Login',
