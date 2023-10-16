@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movieapp/screens/aboutmovie.dart';
-import 'package:movieapp/screens/cast.dart';
-import 'package:movieapp/screens/reviews.dart';
+import '../watchlist/aboutmovie.dart';
+import '../watchlist/cast.dart';
+import '../watchlist/reviews.dart';
 
 class Blank extends StatefulWidget {
   const Blank({super.key});

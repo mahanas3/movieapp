@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movieapp/screens/nowplaying.dart';
-import 'package:movieapp/screens/popular.dart';
-import 'package:movieapp/screens/toprated.dart';
-import 'package:movieapp/screens/upcoming.dart';
-
+import 'package:movieapp/home/popular.dart';
+import 'package:movieapp/home/toprated.dart';
+import 'package:movieapp/home/upcoming.dart';
 import '../widgets/custom_textfield.dart';
+import 'nowplaying.dart';
 
 class Screen1 extends StatefulWidget {
   const Screen1({super.key});
@@ -89,7 +88,7 @@ class _Screen1State extends State<Screen1> with SingleTickerProviderStateMixin {
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) =>
-                    const SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
               ),
@@ -106,7 +105,7 @@ class _Screen1State extends State<Screen1> with SingleTickerProviderStateMixin {
                     child: Text(
                       'Now Playing',
                       style:
-                          TextStyle(color: Colors.white, fontFamily: 'popins2'),
+                      TextStyle(color: Colors.white, fontFamily: 'popins2'),
                     ),
                   ),
                   Tab(

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TopRated extends StatefulWidget {
@@ -11,15 +10,15 @@ class TopRated extends StatefulWidget {
 class _TopRatedState extends State<TopRated> {
 
   List image3=['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTETd4x8EckrVgCD_QGb3Wi5dQwIQ90CVWdF3rbuw4-5T78UFqt5BwGNBWT4sAgwegdEho&usqp=CAU',
-  'https://www.mumbailive.com/images/media/images/bollywood_1674817732983.jpg?fm=webp&w=700',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRGR6rleEjKhhrD2jQyL6WjQ6eJPHMKv6EFvvenAFvr0AEsctVTpXsHayPxc2KUyVPiKc&usqp=CAU',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO0demobYh7PXqvXyJuBrIVPwJn7k5kK-XgA&usqp=CAU',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI99EZMfIUS2eA_rncsfZWPJyxlv57lOjKaA&usqp=CAU',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrV9LA-hoUBrALMv8I2TqwEUhknr6e4SA6KUJmjVeGVIk7Jo5c1NfjBXvHYcqMKO27z_Y&usqp=CAU'];
+    'https://www.mumbailive.com/images/media/images/bollywood_1674817732983.jpg?fm=webp&w=700',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRGR6rleEjKhhrD2jQyL6WjQ6eJPHMKv6EFvvenAFvr0AEsctVTpXsHayPxc2KUyVPiKc&usqp=CAU',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO0demobYh7PXqvXyJuBrIVPwJn7k5kK-XgA&usqp=CAU',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI99EZMfIUS2eA_rncsfZWPJyxlv57lOjKaA&usqp=CAU',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrV9LA-hoUBrALMv8I2TqwEUhknr6e4SA6KUJmjVeGVIk7Jo5c1NfjBXvHYcqMKO27z_Y&usqp=CAU'];
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      backgroundColor: const Color(0xff242A32),
+        backgroundColor: const Color(0xff242A32),
         body: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               childAspectRatio: 2 / 3,

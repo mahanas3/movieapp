@@ -169,9 +169,9 @@ class _SearchState extends State<Search> {
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) =>
-                    const SizedBox(
-                      height: 20,
-                    ))
+                const SizedBox(
+                  height: 20,
+                ))
           ]),
         ),
       ),

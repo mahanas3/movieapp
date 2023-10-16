@@ -19,7 +19,7 @@ class _ReviewsState extends State<Reviews> {
                 leading: Image(image: AssetImage('assets/images/person1.png')),
                 title: Text('Iqbal Shafiq Rozaan',
                     style:
-                        TextStyle(fontFamily: 'popins2', color: Colors.white)),
+                    TextStyle(fontFamily: 'popins2', color: Colors.white)),
                 subtitle: Padding(
                   padding: EdgeInsets.only(top: 15),
                   child: Text(
@@ -33,7 +33,7 @@ class _ReviewsState extends State<Reviews> {
                 leading: Image(image: AssetImage('assets/images/person1.png')),
                 title: Text('Iqbal Shafiq Rozaan',
                     style:
-                        TextStyle(fontFamily: 'popins2', color: Colors.white)),
+                    TextStyle(fontFamily: 'popins2', color: Colors.white)),
                 subtitle: Padding(
                   padding: EdgeInsets.only(top: 15),
                   child: Text(

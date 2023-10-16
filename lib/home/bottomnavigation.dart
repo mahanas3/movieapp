@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movieapp/screens/aboutmovie.dart';
-import 'package:movieapp/screens/cast.dart';
-import 'package:movieapp/screens/reviews.dart';
-import 'package:movieapp/screens/screen1.dart';
-import 'package:movieapp/screens/search.dart';
-import 'package:movieapp/screens/watchlist.dart';
+
+import '../search/searchmovies.dart';
+import '../watchlist/watchlistes.dart';
+import 'movielist.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});

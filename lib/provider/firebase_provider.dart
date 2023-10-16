@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movieapp/services/firebase_services.dart';
-import '../screens/bottomnavigation.dart';
-import '../screens/signup.dart';
 
 class FirebaseProvider extends ChangeNotifier {
   void signUpProvider(

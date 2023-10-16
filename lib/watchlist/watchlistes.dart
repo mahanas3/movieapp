@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movieapp/screens/aboutmovie.dart';
-import 'package:movieapp/screens/cast.dart';
-import 'package:movieapp/screens/reviews.dart';
+import 'package:movieapp/watchlist/reviews.dart';
+import 'aboutmovie.dart';
+import 'cast.dart';
 
 class WatchList extends StatefulWidget {
   const WatchList({super.key});
