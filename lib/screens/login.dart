@@ -98,6 +98,8 @@ class Login extends StatelessWidget {
                             emailcontroller.text,
                             passwordcontroller.text,
                             context);
+                        // print(emailcontroller);
+                        // print(passwordcontroller);
                       },
                       child: const Text(
                         'Login',

@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseServices {
@@ -7,24 +5,19 @@ class FirebaseServices {
 
   Future<UserCredential> createRegistration(
       String email, String password) async {
-    try {
-
-      final credential = await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      return credential;
-     } catch (e) {
-      print(e);
-    }
-    throw Text('sdf');
+    UserCredential userCredential = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: email, password: password);
+    return userCredential;
   }
 
-  Future signInWithEmailandPassword(String email, String password) async {
+  Future<UserCredential?> signInWithEmailandPassword(email, password) async {
     try {
-      final credential = await _firebaseAuth.signInWithEmailAndPassword(
-          email: email, password: password);
-      return credential;
+      UserCredential userCredential = await _firebaseAuth
+          .signInWithEmailAndPassword(email: email, password: password);
+      return userCredential;
     } catch (e) {
       print(e);
     }
+    return null;
   }
 }
