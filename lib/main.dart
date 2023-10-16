@@ -26,7 +26,7 @@ class Main extends StatelessWidget {
       routes: {
         '/': (context) => const Login(),
         '/login': (context) => const BottomNavigation(),
-        '/signup': (context) => const Screen1(),
+        '/signup': (context) => const MovieList(),
         '/blank': (context) => const Blank(),
       },
       debugShowCheckedModeBanner: false,

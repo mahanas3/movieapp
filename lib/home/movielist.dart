@@ -5,14 +5,14 @@ import 'package:movieapp/home/upcoming.dart';
 import '../widgets/custom_textfield.dart';
 import 'nowplaying.dart';
 
-class Screen1 extends StatefulWidget {
-  const Screen1({super.key});
+class MovieList extends StatefulWidget {
+  const MovieList({super.key});
 
   @override
-  State<Screen1> createState() => _Screen1State();
+  State<MovieList> createState() => _MovieListState();
 }
 
-class _Screen1State extends State<Screen1> with SingleTickerProviderStateMixin {
+class _MovieListState extends State<MovieList> with SingleTickerProviderStateMixin {
   final searchcontroller = TextEditingController();
 
   TabController? _tabController;
