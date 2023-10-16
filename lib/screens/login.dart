@@ -98,8 +98,6 @@ class Login extends StatelessWidget {
                             emailcontroller.text,
                             passwordcontroller.text,
                             context);
-                        // print(emailcontroller);
-                        // print(passwordcontroller);
                       },
                       child: const Text(
                         'Login',
@@ -123,10 +121,11 @@ class Login extends StatelessWidget {
                       ),
                       child: TextButton(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Signup()));
+                             Navigator.pushNamed(context, '/signuptextbutton');
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //          builder: (context) => const Signup()));
                           },
                           child: const Text(
                             'SignUp',

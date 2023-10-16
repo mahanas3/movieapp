@@ -167,10 +167,11 @@ class Signup extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 40, left: 10),
                       child: TextButton(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Login()));
+                            Navigator.pushNamed(context, '/signin');
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => const Login()));
                           },
                           child: const Text(
                             'SignIn',

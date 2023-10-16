@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movieapp/screens/blank.dart';
 
 class NowPlaying extends StatefulWidget {
   const NowPlaying({super.key});
@@ -33,11 +34,15 @@ class _NowPlayingState extends State<NowPlaying> {
               crossAxisSpacing: 8),
           itemBuilder: (BuildContext context, int index) {
             return SizedBox(
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    image: DecorationImage(
-                        image: NetworkImage(images1[index]), fit: BoxFit.fill)),
+              child: InkWell(onTap: (){
+                Navigator.pushNamed(context, '/blank');
+              },
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                          image: NetworkImage(images1[index]), fit: BoxFit.fill)),
+                ),
               ),
             );
           },
