@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movieapp/screens/custom_textfiled.dart';
+import '../widgets/custom_textfield.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});

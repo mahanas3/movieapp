@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Upcoming extends StatefulWidget {
@@ -30,10 +29,14 @@ class _UpcomingState extends State<Upcoming> {
               crossAxisSpacing: 8),
           itemCount: images2.length,
           itemBuilder: (BuildContext context, int index) {
-            return Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  image: DecorationImage(image: NetworkImage(images2[index]),fit: BoxFit.fill)),
+            return InkWell(onTap: (){
+              Navigator.pushNamed(context, '/blank');
+            },
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    image: DecorationImage(image: NetworkImage(images2[index]),fit: BoxFit.fill)),
+              ),
             );
           },
         ));

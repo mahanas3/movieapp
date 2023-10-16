@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:movieapp/screens/custom_textfiled.dart';
 import 'package:movieapp/screens/nowplaying.dart';
 import 'package:movieapp/screens/popular.dart';
 import 'package:movieapp/screens/toprated.dart';
 import 'package:movieapp/screens/upcoming.dart';
+
+import '../widgets/custom_textfield.dart';
 
 class Screen1 extends StatefulWidget {
   const Screen1({super.key});

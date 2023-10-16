@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatefulWidget {
   CustomTextField(
       {super.key,
-      required this.text1,
-      required this.text2,
-      this.icon,
-      required this.controller,
-      this.icon1,
-      this.validator});
+        required this.text1,
+        required this.text2,
+        this.icon,
+        required this.controller,
+        this.icon1,
+        this.validator});
 
   String text1;
   String text2;

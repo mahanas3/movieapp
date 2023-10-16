@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movieapp/provider/firebase_provider.dart';
-import 'package:movieapp/screens/custom_textfiled.dart';
-import 'package:movieapp/screens/signup.dart';
 import 'package:provider/provider.dart';
+
+import '../widgets/custom_textfield.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
