@@ -7,8 +7,6 @@ class FirebaseProvider extends ChangeNotifier {
     try {
       await FirebaseServices().createRegistration(email, password);
       Navigator.pushNamed(context, '/signup');
-      // Navigator.push(
-      //     context, MaterialPageRoute(builder: (context) => const Signup()));
       notifyListeners();
     } catch (e) {
       ScaffoldMessenger.of(context)
@@ -22,8 +20,6 @@ class FirebaseProvider extends ChangeNotifier {
     try {
       await FirebaseServices().signInWithEmailandPassword(email, password);
       Navigator.pushNamed(context, '/login');
-      // Navigator.push(context,
-      //     MaterialPageRoute(builder: (context) => const BottomNavigation()));
       notifyListeners();
     } catch (e) {
       ScaffoldMessenger.of(context)
