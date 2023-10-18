@@ -27,10 +27,14 @@ class _TopRatedState extends State<TopRated> {
               crossAxisSpacing: 8),
           itemCount: image3.length,
           itemBuilder: (BuildContext context, int index) {
-            return Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  image: DecorationImage(image: NetworkImage(image3[index]),fit: BoxFit.fill)),
+            return InkWell(onTap: () {
+              Navigator.pushNamed(context, '/blank');
+            },
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    image: DecorationImage(image: NetworkImage(image3[index]),fit: BoxFit.fill)),
+              ),
             );
           },
         )
