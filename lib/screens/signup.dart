@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:movieapp/provider/firebase_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../widgets/custom_textfield.dart';
 
@@ -139,12 +140,15 @@ class Signup extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30)),
                           backgroundColor: const Color(0xff4361EE)),
-                      onPressed: () {
+                      onPressed: () async {
                         if (_formkey.currentState!.validate()) {
                           context.read<FirebaseProvider>().signUpProvider(
                               emailcontroller1.text,
                               passwordcontroller1.text,
                               context);
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          prefs.setBool('islogedIn', true);
                         }
                       },
                       child: const Text(
@@ -167,11 +171,7 @@ class Signup extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 40, left: 10),
                       child: TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/signin');
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => const Login()));
+                            Navigator.pushNamed(context, '/signintext');
                           },
                           child: const Text(
                             'SignIn',

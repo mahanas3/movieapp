@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../search/searchmovies.dart';
 import '../watchlist/watchlistes.dart';
 import 'movielist.dart';

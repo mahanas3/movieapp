@@ -6,7 +6,7 @@ class FirebaseProvider extends ChangeNotifier {
       String email, String password, BuildContext context) async {
     try {
       await FirebaseServices().createRegistration(email, password);
-      Navigator.pushNamed(context, '/signup');
+      Navigator.pushNamed(context, '/home');
       notifyListeners();
     } catch (e) {
       ScaffoldMessenger.of(context)
@@ -19,7 +19,7 @@ class FirebaseProvider extends ChangeNotifier {
       String email, String password, BuildContext context) async {
     try {
       await FirebaseServices().signInWithEmailandPassword(email, password);
-      Navigator.pushNamed(context, '/login');
+      Navigator.pushNamed(context, '/home');
       notifyListeners();
     } catch (e) {
       ScaffoldMessenger.of(context)
