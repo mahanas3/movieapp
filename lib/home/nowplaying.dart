@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movieapp/screens/blank.dart';
 
 class NowPlaying extends StatefulWidget {
   const NowPlaying({super.key});
