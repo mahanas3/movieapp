@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:movieapp/provider/firebase_provider.dart';
+import 'package:provider/provider.dart';
 
 class Upcoming extends StatefulWidget {
   const Upcoming({super.key});
@@ -9,6 +11,13 @@ class Upcoming extends StatefulWidget {
 }
 
 class _UpcomingState extends State<Upcoming> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<FirebaseProvider>().upcomingMovie();
+  }
   List images2 = [
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh-1cLUSqn8YYvEt5ePA-uKfcQbHy5PcegRWj_y_S68dQJZaGD3uetHU7pmD8pz2VXMM0&usqp=CAU',
     'https://m.media-amazon.com/images/M/MV5BZjQ5ZDNlZWMtZTA2Mi00MDRjLWE1NTItYWI0ZjQzNjkwYTUyXkEyXkFqcGdeQXVyMjkxNzQ1NDI@._V1_.jpg',
@@ -22,24 +31,27 @@ class _UpcomingState extends State<Upcoming> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: const Color(0xff242A32),
-        body: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: 2 / 3,
-              crossAxisCount: 3,
-              mainAxisSpacing: 8,
-              crossAxisSpacing: 8),
-          itemCount: images2.length,
-          itemBuilder: (BuildContext context, int index) {
-            return InkWell(onTap: (){
-              Navigator.pushNamed(context, '/blank');
+        body: Consumer<FirebaseProvider>(
+          builder: (BuildContext context, value, Widget? child) {
+           return GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                childAspectRatio: 2 / 3,
+                crossAxisCount: 3,
+                mainAxisSpacing: 8,
+                crossAxisSpacing: 8),
+            itemCount: value.upcomingdata.length,
+            itemBuilder: (BuildContext context, int index) {
+              return InkWell(onTap: (){
+                Navigator.pushNamed(context, '/blank');
+              },
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(image: NetworkImage('https://image.tmdb.org/t/p/original'+value.upcomingdata[index].posterPath!),fit: BoxFit.fill)),
+                ),
+              );
             },
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    image: DecorationImage(image: NetworkImage(images2[index]),fit: BoxFit.fill)),
-              ),
-            );
-          },
+          );}
         ));
   }
 }

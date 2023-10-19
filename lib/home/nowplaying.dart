@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:movieapp/model/playingmodel.dart';
+import 'package:movieapp/provider/firebase_provider.dart';
+import 'package:provider/provider.dart';
 
-class NowPlaying extends StatefulWidget {
-  const NowPlaying({super.key});
+class Playing extends StatefulWidget {
+  const Playing({super.key});
 
   @override
-  State<NowPlaying> createState() => _NowPlayingState();
+  State<Playing> createState() => _PlayingState();
 }
 
-class _NowPlayingState extends State<NowPlaying> {
+class _PlayingState extends State<Playing> {
   List images1 = [
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv_6EsxkRhJ8Kb4nBduZLpmiZVHRQSfiQcBA&usqp=CAU',
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-7kfyDOsgKleOcV5Br0lbxqujraF561NK3qTOI_8m4Fx-oxTUhVmWNrMpBA-pgbECFD8&usqp=CAU',
@@ -18,31 +21,45 @@ class _NowPlayingState extends State<NowPlaying> {
   ];
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<FirebaseProvider>().nowPlaying();
+  }
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: const Color(0xff242A32),
       body: SingleChildScrollView(
-        child: GridView.builder(
-          itemCount: images1.length,
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: 2 / 3,
-              crossAxisCount: 3,
-              mainAxisSpacing: 8,
-              crossAxisSpacing: 8),
-          itemBuilder: (BuildContext context, int index) {
-            return SizedBox(
-              child: InkWell(onTap: (){
-                Navigator.pushNamed(context, '/blank');
+        child: Consumer<FirebaseProvider>(
+          builder: (BuildContext context, value, Widget? child) {
+            return GridView.builder(
+              itemCount: value.datas.length,
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  childAspectRatio: 2 / 3,
+                  crossAxisCount: 3,
+                  mainAxisSpacing: 8,
+                  crossAxisSpacing: 8),
+              itemBuilder: (BuildContext context, int index) {
+                return SizedBox(
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/blank');
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          image: DecorationImage(
+                              image: NetworkImage(
+                                  'https://image.tmdb.org/t/p/w500' +
+                                      value.datas![index].posterPath!),
+                              fit: BoxFit.fill)),
+                    ),
+                  ),
+                );
               },
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: DecorationImage(
-                          image: NetworkImage(images1[index]), fit: BoxFit.fill)),
-                ),
-              ),
             );
           },
         ),

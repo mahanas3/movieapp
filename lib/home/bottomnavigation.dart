@@ -14,7 +14,7 @@ class BottomNavigation extends StatefulWidget {
 class _BottomNavigationState extends State<BottomNavigation> {
   int index = 0;
   List navigation = [
-    const MovieList(),
+    const Home(),
     const Search(),
     const WatchList(),
   ];

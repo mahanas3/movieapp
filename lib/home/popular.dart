@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movieapp/provider/firebase_provider.dart';
+import 'package:provider/provider.dart';
 
 class Popular extends StatefulWidget {
   const Popular({super.key});
@@ -8,6 +10,12 @@ class Popular extends StatefulWidget {
 }
 
 class _PopularState extends State<Popular> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<FirebaseProvider>().popularMovie();
+  }
   List image4 = [
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR37DYMRWemepJ5GMmCTwZIxs2M0LMDemuGHXjsF5ePiC8mSMt0hWWr7LqS3MUi9d8MDng&usqp=CAU',
     'https://akm-img-a-in.tosshub.com/sites/visualstory/wp/2023/07/Snapinsta.app_285644098_3149813968666247_5541496698373498368_n_1080.jpg?size=*:900',
@@ -19,27 +27,36 @@ class _PopularState extends State<Popular> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         backgroundColor: const Color(0xff242A32),
-        body: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: 2 / 3,
-              crossAxisCount: 3,
-              mainAxisSpacing: 8,
-              crossAxisSpacing: 8),
-          itemCount: image4.length,
-          itemBuilder: (BuildContext context, int index) {
-            return InkWell(onTap: () {
-              Navigator.pushNamed(context, '/blank');
+        body: Consumer<FirebaseProvider>(
+            builder: (BuildContext context, value, Widget? child) {
+          return GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                childAspectRatio: 2 / 3,
+                crossAxisCount: 3,
+                mainAxisSpacing: 8,
+                crossAxisSpacing: 8),
+            itemCount: value.populardata.length,
+            itemBuilder: (BuildContext context, int index) {
+              return InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, '/blank');
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                          image: NetworkImage(
+                              'https://image.tmdb.org/t/p/w500' +
+                                  value.populardata[index].posterPath!
+                          ),
+                          fit: BoxFit.fill)),
+                ),
+              );
             },
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    image: DecorationImage(
-                        image: NetworkImage(image4[index]), fit: BoxFit.fill)),
-              ),
-            );
-          },
-        ));
+          );
+        }));
   }
 }

@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:movieapp/services/firebase_services.dart';
+import '../apiservices/apifunction.dart';
+import '../model/playingmodel.dart';
 
 class FirebaseProvider extends ChangeNotifier {
+  late List<Results> datas;
+
+  late List<Results> populardata;
+
+  late List<Results> upcomingdata;
+
+  late List<Results>toprateddata;
+
   void signUpProvider(
       String email, String password, BuildContext context) async {
     try {
@@ -26,5 +36,36 @@ class FirebaseProvider extends ChangeNotifier {
           .showSnackBar(SnackBar(content: Text(e.toString())));
       print(e);
     }
+  }
+
+  void nowPlaying() async {
+    try {
+      datas = await Api().getPlaying();
+      notifyListeners();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void popularMovie() async {
+    try {
+      populardata = await Api().getPopular();
+      notifyListeners();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void upcomingMovie() async {
+    try {
+      upcomingdata = await Api().getUpcoming();
+      notifyListeners();
+    } catch (e) {
+      print(e);
+    }
+  }
+  void topratedMovies()async{
+    toprateddata=await Api().getToprated();
+    notifyListeners();
   }
 }

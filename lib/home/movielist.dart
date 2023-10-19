@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:movieapp/home/popular.dart';
 import 'package:movieapp/home/toprated.dart';
 import 'package:movieapp/home/upcoming.dart';
+import 'package:movieapp/provider/firebase_provider.dart';
+import 'package:provider/provider.dart';
 import '../widgets/custom_textfield.dart';
 import 'nowplaying.dart';
 
-class MovieList extends StatefulWidget {
-  const MovieList({super.key});
+class Home extends StatefulWidget {
+  const Home({super.key});
 
   @override
-  State<MovieList> createState() => _MovieListState();
+  State<Home> createState() => _HomeState();
 }
 
-class _MovieListState extends State<MovieList> with SingleTickerProviderStateMixin {
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   final searchcontroller = TextEditingController();
 
   TabController? _tabController;
@@ -100,33 +102,38 @@ class _MovieListState extends State<MovieList> with SingleTickerProviderStateMix
                 controller: _tabController,
                 labelColor: const Color(0xff67686D),
                 isScrollable: true,
-                tabs: const [
-                  Tab(
-                    child: Text(
-                      'Now Playing',
-                      style:
-                      TextStyle(color: Colors.white, fontFamily: 'popins2'),
+                tabs:  [
+                  InkWell(onTap: () {
+                    //context.read<FirebaseProvider>().nowPlaying();
+                  },
+                    child: const Tab(
+                      child: Text(
+                        'Now Playing',
+                        style:
+                        TextStyle(color: Colors.white, fontFamily: 'popins2'),
+                      ),
+
                     ),
                   ),
-                  Tab(
+                  const Tab(
                     child: Text('Upcoming',
                         style: TextStyle(
                             color: Colors.white, fontFamily: 'popins2')),
                   ),
-                  Tab(
+                  const Tab(
                     child: Text('Top rated',
                         style: TextStyle(
                             color: Colors.white, fontFamily: 'popins2')),
                   ),
-                  Tab(
+                  const Tab(
                     child: Text('Popular',
                         style: TextStyle(
                             color: Colors.white, fontFamily: 'popins2')),
                   ),
                 ]),
             Expanded(
-              child: TabBarView(controller: _tabController, children: const [
-                NowPlaying(),
+              child: TabBarView(controller: _tabController, children:  const [
+                Playing(),
                 Upcoming(),
                 TopRated(),
                 Popular()
