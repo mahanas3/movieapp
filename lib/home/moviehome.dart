@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movieapp/home/popular.dart';
 import 'package:movieapp/home/toprated.dart';
+import 'package:movieapp/home/tvshows.dart';
 import 'package:movieapp/home/upcoming.dart';
-import 'package:movieapp/provider/firebase_provider.dart';
-import 'package:provider/provider.dart';
 import '../widgets/custom_textfield.dart';
 import 'nowplaying.dart';
 
@@ -90,7 +89,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) =>
-                const SizedBox(
+                    const SizedBox(
                   width: 20,
                 ),
               ),
@@ -102,17 +101,15 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 controller: _tabController,
                 labelColor: const Color(0xff67686D),
                 isScrollable: true,
-                tabs:  [
-                  InkWell(onTap: () {
-                    //context.read<FirebaseProvider>().nowPlaying();
-                  },
+                tabs: [
+                  InkWell(
+                    onTap: () {},
                     child: const Tab(
                       child: Text(
                         'Now Playing',
-                        style:
-                        TextStyle(color: Colors.white, fontFamily: 'popins2'),
+                        style: TextStyle(
+                            color: Colors.white, fontFamily: 'popins2'),
                       ),
-
                     ),
                   ),
                   const Tab(
@@ -130,13 +127,21 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         style: TextStyle(
                             color: Colors.white, fontFamily: 'popins2')),
                   ),
+                  const Tab(
+                    child: Text(
+                      'Tv shows',
+                      style:
+                          TextStyle(color: Colors.white, fontFamily: 'popins2'),
+                    ),
+                  )
                 ]),
             Expanded(
-              child: TabBarView(controller: _tabController, children:  const [
+              child: TabBarView(controller: _tabController, children: const [
                 Playing(),
                 Upcoming(),
                 TopRated(),
-                Popular()
+                Popular(),
+                Tvshow()
               ]),
             ),
           ],

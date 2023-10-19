@@ -31,7 +31,7 @@ class Api {
     }
   }
 
-  Future<List<Results>> getUpcoming()async{
+  Future<List<Results>> getUpcoming() async {
     final response1 = await http.get(Uri.parse(
         'https://api.themoviedb.org/3/movie/upcoming?api_key=108bf3bd3841b1bc748b170761656099'));
     if (response1.statusCode == 200) {
@@ -44,7 +44,8 @@ class Api {
       throw Exception('Error');
     }
   }
-  Future<List<Results>> getToprated()async{
+
+  Future<List<Results>> getToprated() async {
     final response1 = await http.get(Uri.parse(
         'https://api.themoviedb.org/3/movie/upcoming?api_key=108bf3bd3841b1bc748b170761656099'));
     if (response1.statusCode == 200) {

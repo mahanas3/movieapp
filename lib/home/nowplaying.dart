@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movieapp/model/playingmodel.dart';
 import 'package:movieapp/provider/firebase_provider.dart';
 import 'package:provider/provider.dart';
 

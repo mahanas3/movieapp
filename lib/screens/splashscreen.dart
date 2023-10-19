@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../home/movielist.dart';
+import '../home/moviehome.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
