@@ -4,8 +4,7 @@ import '../apiservices/apifunction.dart';
 import '../model/playingmodel.dart';
 
 class FirebaseProvider extends ChangeNotifier {
-
-  bool loading=false ;
+  bool loading = false;
 
   late List<Results> datas;
 
@@ -13,7 +12,7 @@ class FirebaseProvider extends ChangeNotifier {
 
   late List<Results> upcomingdata;
 
-  late List<Results>toprateddata;
+  late List<Results> toprateddata;
 
   void signUpProvider(
       String email, String password, BuildContext context) async {
@@ -41,14 +40,18 @@ class FirebaseProvider extends ChangeNotifier {
     }
   }
 
-  void nowPlaying() async {
+  void nowPlaying(BuildContext context) async {
     try {
-        loading=true;
-        notifyListeners();
+      loading = true;
+      notifyListeners();
       datas = await Api().getPlaying();
-      loading=false;
+      loading = false;
       notifyListeners();
     } catch (e) {
+      loading = false;
+      notifyListeners();
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
       print(e);
     }
   }
@@ -70,8 +73,9 @@ class FirebaseProvider extends ChangeNotifier {
       print(e);
     }
   }
-  void topratedMovies()async{
-    toprateddata=await Api().getToprated();
+
+  void topratedMovies() async {
+    toprateddata = await Api().getToprated();
     notifyListeners();
   }
 }
