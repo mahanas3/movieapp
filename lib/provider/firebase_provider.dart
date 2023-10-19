@@ -4,6 +4,9 @@ import '../apiservices/apifunction.dart';
 import '../model/playingmodel.dart';
 
 class FirebaseProvider extends ChangeNotifier {
+
+  bool loading=false ;
+
   late List<Results> datas;
 
   late List<Results> populardata;
@@ -40,7 +43,10 @@ class FirebaseProvider extends ChangeNotifier {
 
   void nowPlaying() async {
     try {
+        loading=true;
+        notifyListeners();
       datas = await Api().getPlaying();
+      loading=false;
       notifyListeners();
     } catch (e) {
       print(e);
