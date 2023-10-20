@@ -3,6 +3,8 @@ import 'package:movieapp/home/popular.dart';
 import 'package:movieapp/home/toprated.dart';
 import 'package:movieapp/home/tvshows.dart';
 import 'package:movieapp/home/upcoming.dart';
+import 'package:provider/provider.dart';
+import '../provider/firebase_provider.dart';
 import '../widgets/custom_textfield.dart';
 import 'nowplaying.dart';
 
@@ -101,22 +103,23 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 controller: _tabController,
                 labelColor: const Color(0xff67686D),
                 isScrollable: true,
-                tabs: [
-                  InkWell(
-                    onTap: () {},
-                    child: const Tab(
-                      child: Text(
-                        'Now Playing',
-                        style: TextStyle(
-                            color: Colors.white, fontFamily: 'popins2'),
-                      ),
+                tabs:  [
+                  const Tab(
+                    child: Text(
+                      'Now Playing',
+                      style: TextStyle(
+                          color: Colors.white, fontFamily: 'popins2'),
                     ),
                   ),
-                  const Tab(
-                    child: Text('Upcoming',
-                        style: TextStyle(
-                            color: Colors.white, fontFamily: 'popins2')),
+                   GestureDetector(onTap: (){
+                     context.read<FirebaseProvider>().upcomingMovie(context);
+                   },
+                     child: const Tab(
+                      child: Text('Upcoming',
+                          style: TextStyle(
+                              color: Colors.white, fontFamily: 'popins2')),
                   ),
+                   ),
                   const Tab(
                     child: Text('Top rated',
                         style: TextStyle(

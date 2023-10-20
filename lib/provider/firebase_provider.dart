@@ -6,13 +6,13 @@ import '../model/playingmodel.dart';
 class FirebaseProvider extends ChangeNotifier {
   bool loading = false;
 
-  late List<Results> datas;
+  List<Results>? datas;
 
-  late List<Results> populardata;
+  List<Results>? populardata;
 
-  late List<Results> upcomingdata;
+  List<Results>? upcomingdata;
 
-  late List<Results> toprateddata;
+  List<Results>? toprateddata;
 
   void signUpProvider(
       String email, String password, BuildContext context) async {
@@ -56,26 +56,52 @@ class FirebaseProvider extends ChangeNotifier {
     }
   }
 
-  void popularMovie() async {
+  void popularMovie(BuildContext context) async {
     try {
+      loading = true;
+      notifyListeners();
       populardata = await Api().getPopular();
+      loading = false;
       notifyListeners();
     } catch (e) {
+      loading = false;
+      notifyListeners();
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
       print(e);
     }
   }
 
-  void upcomingMovie() async {
+  void upcomingMovie(BuildContext context) async {
     try {
+      loading = true;
+      notifyListeners();
       upcomingdata = await Api().getUpcoming();
+      print(upcomingdata);
+      loading = false;
       notifyListeners();
     } catch (e) {
+      loading = false;
+      notifyListeners();
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
       print(e);
     }
   }
 
-  void topratedMovies() async {
-    toprateddata = await Api().getToprated();
-    notifyListeners();
+  void topratedMovies(BuildContext context) async {
+    try {
+      loading = true;
+      notifyListeners();
+      toprateddata = await Api().getToprated();
+      loading = false;
+      notifyListeners();
+    } catch (e) {
+      loading = false;
+      notifyListeners();
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
+      print(e);
+    }
   }
 }

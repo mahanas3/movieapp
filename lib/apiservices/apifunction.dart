@@ -6,7 +6,7 @@ import 'package:movieapp/utilities/networkerror.dart';
 class Api {
   Future<List<Results>> getPlaying() async {
     final response = await http.get(Uri.parse(
-        'https://api.themoviedb.org/3/mov=en-US&page=1&api_key=108bf3bd3841b1bc748b170761656099'));
+        'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&api_key=108bf3bd3841b1bc748b170761656099'));
     if (response.statusCode == 200) {
       var jsonData = (jsonDecode(response.body));
       var playinglist = jsonData['results'].map<Results>((data) {
