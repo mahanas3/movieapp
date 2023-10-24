@@ -58,14 +58,14 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               width: 330,
               child: Consumer<FirebaseProvider>(
                   builder: (BuildContext context, value, Widget? child) {
-                return ElevatedButton(
+                return value.loading? const CircularProgressIndicator():ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                         backgroundColor: const Color(0xff67686D)),
                     onPressed: () {
                       showSearch(
-                          context: context, delegate: CustomSearchelegate());
+                          context: context, delegate: CustomSearchedelegate());
                     },
                     child: const Text(
                       'Search',
