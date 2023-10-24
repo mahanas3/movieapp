@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:movieapp/home/popular.dart';
+import 'package:movieapp/home/searchDelegate.dart';
 import 'package:movieapp/home/toprated.dart';
 import 'package:movieapp/home/tvshows.dart';
 import 'package:movieapp/home/upcoming.dart';
 import 'package:movieapp/provider/firebase_provider.dart';
 import 'package:provider/provider.dart';
-import '../widgets/custom_textfield.dart';
 import 'nowplaying.dart';
 
 class Home extends StatefulWidget {
@@ -26,7 +26,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     super.initState();
     _tabController = TabController(length: 5, vsync: this);
     context.read<FirebaseProvider>().moviesList(context);
-
   }
 
   Widget build(BuildContext context) {
@@ -59,19 +58,19 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               width: 330,
               child: Consumer<FirebaseProvider>(
                   builder: (BuildContext context, value, Widget? child) {
-                return value.loading
-                    ? CircularProgressIndicator()
-                    : value.searchdata == null
-                        ? const Center(
-                            child: Text(
-                            'your search is not found',
-                            style: TextStyle(color: Colors.white),
-                          ))
-                        : CustomTextField(
-                            controller: searchcontroller,
-                            text1: 'Search',
-                            text2: '',
-                            icon: const Icon(Icons.search));
+                return ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        backgroundColor: const Color(0xff67686D)),
+                    onPressed: () {
+                      showSearch(
+                          context: context, delegate: CustomSearchelegate());
+                    },
+                    child: const Text(
+                      'Search',
+                      style: TextStyle(fontFamily: 'popins2'),
+                    ));
               }),
             ),
             const SizedBox(

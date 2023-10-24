@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatefulWidget {
-  CustomTextField(
-      {super.key,
-        required this.text1,
-        required this.text2,
-        this.icon,
-        required this.controller,
-        this.icon1,
-        this.validator});
+  CustomTextField({super.key,
+    required this.text1,
+    required this.text2,
+    this.icon,
+    required this.controller,
+    this.icon1,
+    this.validator, this.onChanged});
 
   String text1;
   String text2;
   Widget? icon;
   Widget? icon1;
+   Function (String textfield)? onChanged;
+
 
   final TextEditingController controller;
 
@@ -27,6 +28,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: widget.onChanged,
       style: const TextStyle(color: Colors.white),
       validator: widget.validator,
       controller: widget.controller,
@@ -45,6 +47,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         prefixIcon: widget.icon1,
         prefixIconColor: Colors.white,
         suffixIcon: widget.icon,
+
         suffixIconColor: Colors.white,
         border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(16))),
