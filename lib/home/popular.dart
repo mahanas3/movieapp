@@ -26,7 +26,11 @@ class _PopularState extends State<Popular> {
           return value.loading
               ? const CircularProgressIndicator()
               : value.populardata == null
-                  ? const Text('No data')
+                  ? const Center(
+                      child: Text(
+                      'No data',
+                      style: TextStyle(color: Colors.white),
+                    ))
                   : GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
@@ -45,7 +49,7 @@ class _PopularState extends State<Popular> {
                                 borderRadius: BorderRadius.circular(20),
                                 image: DecorationImage(
                                     image: NetworkImage(
-                                        'https://image.tmdb.org/t/p/w500' +
+                                        'https://image.tmdb.org/t/p/original' +
                                             value.populardata![index]
                                                 .posterPath!),
                                     fit: BoxFit.fill)),

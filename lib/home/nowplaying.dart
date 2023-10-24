@@ -14,6 +14,7 @@ class _PlayingState extends State<Playing> {
 
 
   Widget build(BuildContext context) {
+    context.read<FirebaseProvider>().nowPlaying(context);
     return Scaffold(
       backgroundColor: const Color(0xff242A32),
       body: SingleChildScrollView(
@@ -21,7 +22,7 @@ class _PlayingState extends State<Playing> {
           builder: (BuildContext context, value, Widget? child) {
             return value.loading
                 ? const CircularProgressIndicator()
-                : value.datas == null
+                : value.nowplayingdata == null
                     ? const Center(
                       child: Text(
                           'No data',
@@ -29,7 +30,7 @@ class _PlayingState extends State<Playing> {
                         ),
                     )
                     : GridView.builder(
-                        itemCount: value.datas!.length,
+                        itemCount: value.nowplayingdata!.length,
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         gridDelegate:
@@ -49,7 +50,7 @@ class _PlayingState extends State<Playing> {
                                     borderRadius: BorderRadius.circular(20),
                                     image: DecorationImage(
                                         image: NetworkImage(
-                                            'https://image.tmdb.org/t/p/w500${value.datas![index].posterPath!}'),
+                                            'https://image.tmdb.org/t/p/w500${value.nowplayingdata![index].posterPath!}'),
                                         fit: BoxFit.fill)),
                               ),
                             ),

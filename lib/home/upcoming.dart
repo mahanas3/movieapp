@@ -14,7 +14,7 @@ class _UpcomingState extends State<Upcoming> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
+    context.read<FirebaseProvider>().upcomingMovie(context);
   }
 
   @override
@@ -26,7 +26,11 @@ class _UpcomingState extends State<Upcoming> {
           return value.loading
               ? const CircularProgressIndicator()
               : value.upcomingdata == null
-                  ? const Text('No data')
+                  ? const Center(
+                      child: Text(
+                      'No data',
+                      style: TextStyle(color: Colors.white),
+                    ))
                   : GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
@@ -45,7 +49,7 @@ class _UpcomingState extends State<Upcoming> {
                                 borderRadius: BorderRadius.circular(20),
                                 image: DecorationImage(
                                     image: NetworkImage(
-                                        'https://image.tmdb.org/t/p/original' +
+                                        'https://image.tmdb.org/t/p/w342' +
                                             value.upcomingdata![index]
                                                 .posterPath!),
                                     fit: BoxFit.fill)),

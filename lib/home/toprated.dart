@@ -14,12 +14,11 @@ class _TopRatedState extends State<TopRated> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
+    context.read<FirebaseProvider>().topRatedMovies(context);
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         backgroundColor: const Color(0xff242A32),
         body: Consumer<FirebaseProvider>(
@@ -27,7 +26,11 @@ class _TopRatedState extends State<TopRated> {
           return value.loading
               ? const CircularProgressIndicator()
               : value.toprateddata == null
-                  ? const Text('No data',style: TextStyle(color: Colors.white),)
+                  ? const Center(
+                      child: Text(
+                      'No data',
+                      style: TextStyle(color: Colors.white),
+                    ))
                   : GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(

@@ -3,8 +3,8 @@ import 'package:movieapp/home/popular.dart';
 import 'package:movieapp/home/toprated.dart';
 import 'package:movieapp/home/tvshows.dart';
 import 'package:movieapp/home/upcoming.dart';
+import 'package:movieapp/provider/firebase_provider.dart';
 import 'package:provider/provider.dart';
-import '../provider/firebase_provider.dart';
 import '../widgets/custom_textfield.dart';
 import 'nowplaying.dart';
 
@@ -20,19 +20,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   TabController? _tabController;
 
-  List images = [
-    'assets/images/images1.jfif',
-    'assets/images/image2.jfif',
-    'assets/images/image3.jfif',
-    'assets/images/image4.jfif',
-    'assets/images/image5.jfif'
-  ];
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _tabController = TabController(length: 5, vsync: this);
+    context.read<FirebaseProvider>().moviesList(context);
+
   }
 
   Widget build(BuildContext context) {
@@ -63,11 +57,22 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             SizedBox(
               height: 50,
               width: 330,
-              child: CustomTextField(
-                  controller: searchcontroller,
-                  text1: 'Search',
-                  text2: "Search",
-                  icon: const Icon(Icons.search)),
+              child: Consumer<FirebaseProvider>(
+                  builder: (BuildContext context, value, Widget? child) {
+                return value.loading
+                    ? CircularProgressIndicator()
+                    : value.searchdata == null
+                        ? const Center(
+                            child: Text(
+                            'your search is not found',
+                            style: TextStyle(color: Colors.white),
+                          ))
+                        : CustomTextField(
+                            controller: searchcontroller,
+                            text1: 'Search',
+                            text2: '',
+                            icon: const Icon(Icons.search));
+              }),
             ),
             const SizedBox(
               height: 20,
@@ -75,25 +80,42 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             Container(
               height: 210,
               width: double.infinity,
-              child: ListView.separated(
-                itemCount: images.length,
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    height: 200,
-                    width: 150,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        image: DecorationImage(
-                            image: AssetImage(images[index]),
-                            fit: BoxFit.fill)),
-                  );
+              child: Consumer<FirebaseProvider>(
+                builder: (BuildContext context, value, Widget? child) {
+                  return value.loading
+                      ? const CircularProgressIndicator()
+                      : value.moviesdata == null
+                          ? const Center(
+                              child: Text(
+                                'No data',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            )
+                          : ListView.separated(
+                              itemCount: value.moviesdata!.length,
+                              scrollDirection: Axis.horizontal,
+                              shrinkWrap: true,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Container(
+                                  height: 200,
+                                  width: 150,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      image: DecorationImage(
+                                          image: NetworkImage(
+                                              'https://image.tmdb.org/t/p/w300' +
+                                                  value.moviesdata![index]
+                                                      .posterPath!),
+                                          fit: BoxFit.fill)),
+                                );
+                              },
+                              separatorBuilder:
+                                  (BuildContext context, int index) =>
+                                      const SizedBox(
+                                width: 20,
+                              ),
+                            );
                 },
-                separatorBuilder: (BuildContext context, int index) =>
-                    const SizedBox(
-                  width: 20,
-                ),
               ),
             ),
             const SizedBox(
@@ -103,34 +125,30 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 controller: _tabController,
                 labelColor: const Color(0xff67686D),
                 isScrollable: true,
-                tabs:  [
-                  const Tab(
+                tabs: const [
+                  Tab(
                     child: Text(
                       'Now Playing',
-                      style: TextStyle(
-                          color: Colors.white, fontFamily: 'popins2'),
+                      style:
+                          TextStyle(color: Colors.white, fontFamily: 'popins2'),
                     ),
                   ),
-                   GestureDetector(onTap: (){
-                     context.read<FirebaseProvider>().upcomingMovie(context);
-                   },
-                     child: const Tab(
-                      child: Text('Upcoming',
-                          style: TextStyle(
-                              color: Colors.white, fontFamily: 'popins2')),
+                  Tab(
+                    child: Text('Upcoming',
+                        style: TextStyle(
+                            color: Colors.white, fontFamily: 'popins2')),
                   ),
-                   ),
-                  const Tab(
+                  Tab(
                     child: Text('Top rated',
                         style: TextStyle(
                             color: Colors.white, fontFamily: 'popins2')),
                   ),
-                  const Tab(
+                  Tab(
                     child: Text('Popular',
                         style: TextStyle(
                             color: Colors.white, fontFamily: 'popins2')),
                   ),
-                  const Tab(
+                  Tab(
                     child: Text(
                       'Tv shows',
                       style:

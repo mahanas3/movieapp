@@ -36,8 +36,8 @@ class Api {
     final response3 = await http.get(Uri.parse(
         'https://api.themoviedb.org/3/movie/upcoming?api_key=108bf3bd3841b1bc748b170761656099'));
     if (response3.statusCode == 200) {
-      var jsonData1 = (jsonDecode(response3.body));
-      var popular = jsonData1['results'].map<Results>((data) {
+      var jsonData3 = (jsonDecode(response3.body));
+      var popular = jsonData3['results'].map<Results>((data) {
         return Results.fromJson(data);
       }).toList();
       return popular;
@@ -50,13 +50,41 @@ class Api {
     final response4 = await http.get(Uri.parse(
         'https://api.themoviedb.org/3/movie/upcoming?api_key=108bf3bd3841b1bc748b170761656099'));
     if (response4.statusCode == 200) {
-      var jsonData1 = (jsonDecode(response4.body));
-      var popular = jsonData1['results'].map<Results>((data) {
+      var jsonData4 = (jsonDecode(response4.body));
+      var popular = jsonData4['results'].map<Results>((data) {
         return Results.fromJson(data);
       }).toList();
       return popular;
     } else {
       throw NetworkError.networkError(response4.statusCode);
     }
+  }
+
+  Future<List<Results>> getMovies() async {
+    final response5 = await http.get(Uri.parse(
+        'https://api.themoviedb.org/3/discover/movie?api_key=108bf3bd3841b1bc748b170761656099'));
+    if (response5.statusCode == 200) {
+      var jsonData5 = (jsonDecode(response5.body));
+      var movies = jsonData5['results'].map<Results>((data) {
+        return Results.fromJson(data);
+      }).toList();
+      return movies;
+    } else {
+      throw NetworkError.networkError(response5.statusCode);
+    }
+  }
+
+  Future <List<Results>>getSearch() async {
+    final response6 = await http.get(Uri.parse(
+        'https://api.themoviedb.org/3/search/movie?api_key=108bf3bd3841b1bc748b170761656099&query=a'));
+    print(response6);
+    if (response6.statusCode == 200) {
+      var jsonData6 = (jsonDecode(response6.body));
+      var search = jsonData6['results'].map((data) {
+        return Results.fromJson(data);
+      }).toList();
+      return search;
+    }
+    throw NetworkError.networkError(response6.statusCode);
   }
 }
