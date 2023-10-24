@@ -74,13 +74,12 @@ class Api {
     }
   }
 
-  Future <List<Results>>getSearch() async {
+  Future <List<Results>>getSearch(String query) async {
     final response6 = await http.get(Uri.parse(
-        'https://api.themoviedb.org/3/search/movie?api_key=108bf3bd3841b1bc748b170761656099&query=a'));
-    print(response6);
+        'https://api.themoviedb.org/3/search/movie?api_key=108bf3bd3841b1bc748b170761656099&query='+query));
     if (response6.statusCode == 200) {
       var jsonData6 = (jsonDecode(response6.body));
-      var search = jsonData6['results'].map((data) {
+      var search = jsonData6['results'] .map<Results>((data) {
         return Results.fromJson(data);
       }).toList();
       return search;

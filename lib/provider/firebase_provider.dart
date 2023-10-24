@@ -125,11 +125,11 @@ class FirebaseProvider extends ChangeNotifier {
     }
   }
 
-  void searchMovies(BuildContext context) async {
+  void searchMovies(BuildContext context,String query) async {
     try {
       loading = true;
       notifyListeners();
-      searchdata = await Api().getSearch();
+      searchdata = await Api().getSearch(query);
       loading = false;
       notifyListeners();
     } catch (e) {
