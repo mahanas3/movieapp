@@ -22,7 +22,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _tabController = TabController(length: 5, vsync: this);
     context.read<FirebaseProvider>().moviesList(context);
@@ -102,9 +101,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                       borderRadius: BorderRadius.circular(20),
                                       image: DecorationImage(
                                           image: NetworkImage(
-                                              'https://image.tmdb.org/t/p/w300' +
-                                                  value.moviesdata![index]
-                                                      .posterPath!),
+                                              'https://image.tmdb.org/t/p/w300${value.moviesdata![index]
+                                                      .posterPath!}'),
                                           fit: BoxFit.fill)),
                                 );
                               },

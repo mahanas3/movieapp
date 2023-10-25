@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../model/search.dart';
+import 'package:movieapp/home/searchDelegate.dart';
+import 'package:movieapp/home/serachmovies.dart';
 import '../watchlist/watchlistes.dart';
 import 'moviehome.dart';
 
@@ -15,7 +16,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   int index = 0;
   List navigation = [
     const Home(),
-     Search(),
+      Search(),
     const WatchList(),
   ];
 
