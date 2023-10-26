@@ -49,9 +49,8 @@ class _TopRatedState extends State<TopRated> {
                                 borderRadius: BorderRadius.circular(20),
                                 image: DecorationImage(
                                     image: NetworkImage(
-                                        'https://image.tmdb.org/t/p/original' +
-                                            value.toprateddata![index]
-                                                .posterPath!),
+                                        'https://image.tmdb.org/t/p/original${value.toprateddata![index]
+                                                .posterPath!}'),
                                     fit: BoxFit.fill)),
                           ),
                         );

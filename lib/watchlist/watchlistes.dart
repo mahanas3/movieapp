@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:movieapp/provider/firebase_provider.dart';
 import 'package:movieapp/watchlist/reviews.dart';
+import 'package:provider/provider.dart';
 import 'aboutmovie.dart';
 import 'cast.dart';
 
 class WatchList extends StatefulWidget {
-  const WatchList({super.key});
+   WatchList({super.key,required this.id});
 
+  String id;
   @override
   State<WatchList> createState() => _WatchListState();
 }
@@ -17,8 +20,8 @@ class _WatchListState extends State<WatchList>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    context.read<FirebaseProvider>().details(context,widget.id);
     _tabController1 = TabController(length: 3, vsync: this);
   }
 
@@ -47,15 +50,19 @@ class _WatchListState extends State<WatchList>
       body: Column(
         children: [
           Stack(clipBehavior: Clip.none, children: [
-            Container(
-              height: 200,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  image: DecorationImage(
-                      image: NetworkImage(
-                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm47mhbz0nvrVN13cC9766wtMveD6_Kz4zzA&usqp=CAU'),
-                      fit: BoxFit.fill)),
+            Consumer<FirebaseProvider>(
+              builder: (BuildContext context, value, Widget? child) {
+                print(value);
+              return  Container(
+                height: 200,
+                width: double.infinity,
+                decoration:  BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            value.detailsdata.toString()),
+                        fit: BoxFit.fill)),
+              );}
             ),
             Positioned(
               bottom: -80,
@@ -127,8 +134,7 @@ class _WatchListState extends State<WatchList>
               ),
               Padding(
                 padding: EdgeInsets.only(top: 30),
-                child: Text(
-                  '2021',
+                child: Text('',
                   style: TextStyle(
                       color: Color(0xff92929D), fontFamily: 'popins2'),
                 ),

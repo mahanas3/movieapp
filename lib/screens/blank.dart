@@ -1,23 +1,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:movieapp/provider/firebase_provider.dart';
+import 'package:provider/provider.dart';
 import '../watchlist/aboutmovie.dart';
 import '../watchlist/cast.dart';
 import '../watchlist/reviews.dart';
 
 class Blank extends StatefulWidget {
-  const Blank({super.key});
+  Blank({super.key, required this.id});
+
+  String id;
 
   @override
   State<Blank> createState() => _BlankState();
 }
 
-class _BlankState extends State<Blank>
-    with SingleTickerProviderStateMixin {
+class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
   TabController? _tabController1;
 
   @override
   void initState() {
     // TODO: implement initState
+    print(widget.id);
+    context.read<FirebaseProvider>().details(context, widget.id);
+
     super.initState();
     _tabController1 = TabController(length: 3, vsync: this);
   }
@@ -47,32 +53,38 @@ class _BlankState extends State<Blank>
       body: Column(
         children: [
           Stack(clipBehavior: Clip.none, children: [
-            Container(
-              height: 200,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  image: DecorationImage(
-                      image: NetworkImage(
-                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm47mhbz0nvrVN13cC9766wtMveD6_Kz4zzA&usqp=CAU'),
-                      fit: BoxFit.fill)),
-            ),
+            Consumer<FirebaseProvider>(
+                builder: (BuildContext context, value, Widget? child) {
+              return Container(
+                height: 200,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            'https://image.tmdb.org/t/p/original${value.detailsdata?.posterPath}'),
+                        fit: BoxFit.fill)),
+              );
+            }),
             Positioned(
               bottom: -80,
               child: Padding(
                 padding: const EdgeInsets.only(left: 20),
-                child: Container(
-                    height: 170,
-                    width: 110,
-                    alignment: AlignmentDirectional.bottomEnd,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      image: const DecorationImage(
-                        image: NetworkImage(
-                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTM9NpldoJ-BR9C38MH-Hxf5FpTxofIXIELTQ&usqp=CAUa'),
-                        fit: BoxFit.fill,
-                      ),
-                    )),
+                child: Consumer<FirebaseProvider>(
+                  builder: (BuildContext context, value, Widget? child) {
+                  return Container(
+                      height: 170,
+                      width: 110,
+                      alignment: AlignmentDirectional.bottomEnd,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        image:  DecorationImage(
+                          image: NetworkImage(
+                              'https://image.tmdb.org/t/p/w780${value.detailsdata!.posterPath!}'),
+                          fit: BoxFit.fill,
+                        ),
+                      ));}
+                ),
               ),
             ),
             Positioned(
@@ -102,15 +114,18 @@ class _BlankState extends State<Blank>
               ),
             )
           ]),
-          const Padding(
-            padding: EdgeInsets.only(left: 155, top: 30),
-            child: Text(
-              'Spiderman No Way Home',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'popins2',
-                  fontWeight: FontWeight.w900,
-                  fontSize: 20),
+           Padding(
+            padding: const EdgeInsets.only(left: 155, top: 30),
+            child: Consumer<FirebaseProvider>(
+              builder: (BuildContext context, value, Widget? child) {
+              return  Text(
+                value.detailsdata!.title!,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'popins2',
+                    fontWeight: FontWeight.w900,
+                    fontSize: 20),
+              );}
             ),
           ),
           const Row(

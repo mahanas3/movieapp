@@ -60,6 +60,7 @@ class CustomSearchedelegate extends SearchDelegate {
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
                                     value.searchdata![index].title!,

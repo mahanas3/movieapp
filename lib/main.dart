@@ -1,12 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:movieapp/provider/firebase_provider.dart';
-import 'package:movieapp/screens/blank.dart';
-import 'package:movieapp/screens/login.dart';
-import 'package:movieapp/screens/signup.dart';
+import 'package:movieapp/routs/route.dart';
+
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'home/bottomnavigation.dart';
 
 bool? email;
 
@@ -31,13 +29,7 @@ class Main extends StatelessWidget {
     print(email);
     return MaterialApp(
       initialRoute: email == true ? '/home' : '/',
-      routes: {
-        '/': (context) => const Login(),
-        '/home': (context) => const BottomNavigation(),
-        '/signuptext': (context) => const Signup(),
-        '/signintext': (context) => const Login(),
-        '/blank': (context) => const Blank(),
-      },
+      onGenerateRoute: AppRoute.routesetting,
       debugShowCheckedModeBanner: false,
     );
   }

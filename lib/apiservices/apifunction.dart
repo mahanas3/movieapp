@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:movieapp/model/detailsmodel.dart';
 import 'package:movieapp/model/playingmodel.dart';
 import 'package:movieapp/utilities/networkerror.dart';
 
@@ -74,16 +75,28 @@ class Api {
     }
   }
 
-  Future <List<Results>>getSearch(String query) async {
+  Future<List<Results>> getSearch(String query) async {
     final response6 = await http.get(Uri.parse(
-        'https://api.themoviedb.org/3/search/movie?api_key=108bf3bd3841b1bc748b170761656099&query='+query));
+        'https://api.themoviedb.org/3/search/movie?api_key=108bf3bd3841b1bc748b170761656099&query=$query'));
     if (response6.statusCode == 200) {
       var jsonData6 = (jsonDecode(response6.body));
-      var search = jsonData6['results'] .map<Results>((data) {
+      var search = jsonData6['results'].map<Results>((data) {
         return Results.fromJson(data);
       }).toList();
       return search;
     }
     throw NetworkError.networkError(response6.statusCode);
+  }
+
+
+  Future getDetails(String id) async {
+    final response8 = await http.get(Uri.parse(
+        'https://api.themoviedb.org/3/movie/$id?api_key=108bf3bd3841b1bc748b170761656099'));
+    if (response8.statusCode == 200) {
+      var jsonData8 = jsonDecode(response8.body);
+      var moviedetails = Details.fromJson(jsonData8);
+      return moviedetails;
+    }
+    throw NetworkError.networkError(response8.statusCode);
   }
 }

@@ -43,7 +43,7 @@ class _PlayingState extends State<Playing> {
                           return SizedBox(
                             child: InkWell(
                               onTap: () {
-                                Navigator.pushNamed(context, '/blank');
+                                Navigator.pushNamed(context, '/blank',arguments: value.nowplayingdata![index].id.toString());
                               },
                               child: Container(
                                 decoration: BoxDecoration(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movieapp/model/detailsmodel.dart';
 import 'package:movieapp/services/firebase_services.dart';
 import '../apiservices/apifunction.dart';
 import '../model/playingmodel.dart';
@@ -17,6 +18,8 @@ class FirebaseProvider extends ChangeNotifier {
   List<Results>? moviesdata;
 
   List<Results>? searchdata;
+
+  Details? detailsdata;
 
   void signUpProvider(
       String email, String password, BuildContext context) async {
@@ -125,11 +128,29 @@ class FirebaseProvider extends ChangeNotifier {
     }
   }
 
-  void searchMovies(BuildContext context,String query) async {
+  void searchMovies(BuildContext context, String query) async {
     try {
       loading = true;
       notifyListeners();
       searchdata = await Api().getSearch(query);
+      loading = false;
+      notifyListeners();
+    } catch (e) {
+      loading = false;
+      notifyListeners();
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
+      print(e);
+    }
+  }
+
+  void details(BuildContext context,String id)async{
+    //print('cvbn');
+    try {
+      loading = true;
+      notifyListeners();
+      detailsdata = await Api().getDetails(id);
+      print(detailsdata);
       loading = false;
       notifyListeners();
     } catch (e) {
