@@ -42,7 +42,7 @@ class _TopRatedState extends State<TopRated> {
                       itemBuilder: (BuildContext context, int index) {
                         return InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, '/blank');
+                            Navigator.pushNamed(context, '/blank',arguments: value.toprateddata![index].id.toString());
                           },
                           child: Container(
                             decoration: BoxDecoration(

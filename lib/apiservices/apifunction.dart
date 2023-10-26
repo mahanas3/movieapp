@@ -103,6 +103,7 @@ class Api {
   Future<List<Review>> getReviews(String id) async {
     final reviewresponse = await http.get(Uri.parse(
         'https://api.themoviedb.org/3/movie/$id/reviews?api_key=108bf3bd3841b1bc748b170761656099'));
+    print(reviewresponse);
     if (reviewresponse.statusCode == 200) {
       var jsondata9 = jsonDecode(reviewresponse.body);
       var moviereview = jsondata9['results'].map<Review>((data) {

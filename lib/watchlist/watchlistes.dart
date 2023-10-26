@@ -211,7 +211,7 @@ class _WatchListState extends State<WatchList>
           Expanded(
             child: TabBarView(
                 controller: _tabController1,
-                children: const [AboutMovie(), Reviews(), Cast()]),
+                children:  [const AboutMovie(), Reviews(id: '',), const Cast()]),
           )
         ],
       ),

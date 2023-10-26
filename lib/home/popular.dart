@@ -42,16 +42,15 @@ class _PopularState extends State<Popular> {
                       itemBuilder: (BuildContext context, int index) {
                         return InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, '/blank');
+                            Navigator.pushNamed(context, '/blank',arguments: value.populardata![index].id.toString());
                           },
                           child: Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
                                 image: DecorationImage(
                                     image: NetworkImage(
-                                        'https://image.tmdb.org/t/p/original' +
-                                            value.populardata![index]
-                                                .posterPath!),
+                                        'https://image.tmdb.org/t/p/original${value.populardata![index]
+                                                .posterPath!}'),
                                     fit: BoxFit.fill)),
                           ),
                         );

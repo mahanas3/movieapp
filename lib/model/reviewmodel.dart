@@ -47,7 +47,7 @@ class AuthorDetails {
   String? name;
   String? username;
   String? avatarPath;
-  int? rating;
+  dynamic? rating;
 
   AuthorDetails({this.name, this.username, this.avatarPath, this.rating});
 

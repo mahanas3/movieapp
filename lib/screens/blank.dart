@@ -62,7 +62,7 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
                     borderRadius: const BorderRadius.all(Radius.circular(20)),
                     image: DecorationImage(
                         image: NetworkImage(
-                            'https://image.tmdb.org/t/p/original${value.detailsdata?.posterPath}'),
+                            'https://image.tmdb.org/t/p/original${value.detailsdata?.backdropPath}'),
                         fit: BoxFit.fill)),
               );
             }),
@@ -226,7 +226,7 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
           Expanded(
             child: TabBarView(
                 controller: _tabController1,
-                children: const [AboutMovie(), Reviews(), Cast()]),
+                children:  [const AboutMovie(), Reviews(id: widget.id,), const Cast()]),
           )
         ],
       ),

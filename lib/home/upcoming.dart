@@ -42,16 +42,15 @@ class _UpcomingState extends State<Upcoming> {
                       itemBuilder: (BuildContext context, int index) {
                         return InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, '/blank');
+                            Navigator.pushNamed(context, '/blank',arguments: value.upcomingdata![index].id.toString());
                           },
                           child: Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
                                 image: DecorationImage(
                                     image: NetworkImage(
-                                        'https://image.tmdb.org/t/p/w342' +
-                                            value.upcomingdata![index]
-                                                .posterPath!),
+                                        'https://image.tmdb.org/t/p/w342${value.upcomingdata![index]
+                                                .posterPath!}'),
                                     fit: BoxFit.fill)),
                           ),
                         );

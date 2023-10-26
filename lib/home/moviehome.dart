@@ -23,7 +23,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 5, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
     context.read<FirebaseProvider>().moviesList(context);
   }
 
@@ -145,13 +145,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         style: TextStyle(
                             color: Colors.white, fontFamily: 'popins2')),
                   ),
-                  Tab(
-                    child: Text(
-                      'Tv shows',
-                      style:
-                          TextStyle(color: Colors.white, fontFamily: 'popins2'),
-                    ),
-                  )
                 ]),
             Expanded(
               child: TabBarView(controller: _tabController, children: const [
@@ -159,7 +152,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 Upcoming(),
                 TopRated(),
                 Popular(),
-                Tvshow()
               ]),
             ),
           ],

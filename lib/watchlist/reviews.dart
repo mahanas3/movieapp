@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:movieapp/provider/firebase_provider.dart';
+import 'package:provider/provider.dart';
 
 class Reviews extends StatefulWidget {
-  const Reviews({super.key});
+  Reviews({super.key, required this.id});
+
+  String id;
 
   @override
   State<Reviews> createState() => _ReviewsState();
@@ -9,39 +13,44 @@ class Reviews extends StatefulWidget {
 
 class _ReviewsState extends State<Reviews> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<FirebaseProvider>().reviews(context, widget.id);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        backgroundColor: Color(0xff242A32),
+    return Scaffold(
+        backgroundColor: const Color(0xff242A32),
         body: SingleChildScrollView(
           child: Column(
             children: [
-              ListTile(
-                leading: Image(image: AssetImage('assets/images/person1.png')),
-                title: Text('Iqbal Shafiq Rozaan',
-                    style:
-                    TextStyle(fontFamily: 'popins2', color: Colors.white)),
-                subtitle: Padding(
-                  padding: EdgeInsets.only(top: 15),
-                  child: Text(
-                      'From DC Comics comes the Suicide Squad, an antihero team of incarcerated supervillains who act as deniable assets for the United States government.',
-                      style: TextStyle(
-                          color: Colors.white, fontFamily: 'popins2')),
-                ),
+              Container(
+                height: 300,
+                child: Consumer<FirebaseProvider>(
+                    builder: (BuildContext context, value, Widget? child) {
+                  return ListView.builder(
+                      itemCount: value.reviewdata?.length,
+
+                      itemBuilder: (BuildContext context, int index) {
+                        return ListTile(
+                          leading: const Image(
+                              image: AssetImage('assets/images/person1.png')),
+                          title: Text(value.reviewdata![index].author!,
+                              style: const TextStyle(
+                                  fontFamily: 'popins2', color: Colors.white)),
+                          subtitle: Padding(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: Text(value.reviewdata![index].content!,
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'popins2')),
+                          ),
+                        );
+                      });
+                }),
               ),
-              SizedBox(height: 20,),
-              ListTile(
-                leading: Image(image: AssetImage('assets/images/person1.png')),
-                title: Text('Iqbal Shafiq Rozaan',
-                    style:
-                    TextStyle(fontFamily: 'popins2', color: Colors.white)),
-                subtitle: Padding(
-                  padding: EdgeInsets.only(top: 15),
-                  child: Text(
-                      'From DC Comics comes the Suicide Squad, an antihero team of incarcerated supervillains who act as deniable assets for the United States government.',
-                      style: TextStyle(
-                          color: Colors.white, fontFamily: 'popins2')),
-                ),
-              )
             ],
           ),
         ));
