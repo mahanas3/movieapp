@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:movieapp/model/detailsmodel.dart';
 import 'package:movieapp/model/playingmodel.dart';
 import 'package:movieapp/utilities/networkerror.dart';
+import '../model/reviewmodel.dart';
 
 class Api {
   Future<List<Results>> getPlaying() async {
@@ -88,7 +89,6 @@ class Api {
     throw NetworkError.networkError(response6.statusCode);
   }
 
-
   Future getDetails(String id) async {
     final response8 = await http.get(Uri.parse(
         'https://api.themoviedb.org/3/movie/$id?api_key=108bf3bd3841b1bc748b170761656099'));
@@ -98,5 +98,19 @@ class Api {
       return moviedetails;
     }
     throw NetworkError.networkError(response8.statusCode);
+  }
+
+  Future<List<Review>> getReviews(String id) async {
+    final reviewresponse = await http.get(Uri.parse(
+        'https://api.themoviedb.org/3/movie/$id/reviews?api_key=108bf3bd3841b1bc748b170761656099'));
+    if (reviewresponse.statusCode == 200) {
+      var jsondata9 = jsonDecode(reviewresponse.body);
+      var moviereview = jsondata9['results'].map<Review>((data) {
+        return Review.fromJson(data);
+      }).toList();
+      return moviereview;
+    } else {
+      throw NetworkError.networkError(reviewresponse.statusCode);
+    }
   }
 }

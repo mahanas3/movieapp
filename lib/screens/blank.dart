@@ -71,20 +71,20 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
               child: Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: Consumer<FirebaseProvider>(
-                  builder: (BuildContext context, value, Widget? child) {
+                    builder: (BuildContext context, value, Widget? child) {
                   return Container(
                       height: 170,
                       width: 110,
                       alignment: AlignmentDirectional.bottomEnd,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        image:  DecorationImage(
+                        image: DecorationImage(
                           image: NetworkImage(
                               'https://image.tmdb.org/t/p/w780${value.detailsdata!.posterPath!}'),
                           fit: BoxFit.fill,
                         ),
-                      ));}
-                ),
+                      ));
+                }),
               ),
             ),
             Positioned(
@@ -96,101 +96,107 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: const Color(0xff67686D)),
-                child: const Padding(
-                  padding: EdgeInsets.only(right: 10),
-                  child: Row(
-                    children: [
-                      Icon(Icons.star_border, color: Color(0xffFF9800)),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        '9.5',
-                        style: TextStyle(color: Color(0xffFF9800)),
-                      )
-                    ],
-                  ),
+                child: Row(
+                  children: [
+                    const Icon(Icons.star_border, color: Color(0xffFF9800)),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Consumer<FirebaseProvider>(builder:
+                        (BuildContext context, value, Widget? child) {
+                      return Text(
+                        value.detailsdata!.voteCount.toString(),
+                        style: const TextStyle(color: Color(0xffFF9800)),
+                      );
+                    })
+                  ],
                 ),
               ),
             )
           ]),
-           Padding(
+          Padding(
             padding: const EdgeInsets.only(left: 155, top: 30),
             child: Consumer<FirebaseProvider>(
-              builder: (BuildContext context, value, Widget? child) {
-              return  Text(
+                builder: (BuildContext context, value, Widget? child) {
+              return Text(
                 value.detailsdata!.title!,
                 style: const TextStyle(
                     color: Colors.white,
                     fontFamily: 'popins2',
                     fontWeight: FontWeight.w900,
                     fontSize: 20),
-              );}
-            ),
+              );
+            }),
           ),
-          const Row(
+          Row(
             children: [
-              Padding(
-                padding: EdgeInsets.only(top: 30, left: 40),
+              const Padding(
+                padding: EdgeInsets.only(top: 30, left: 10),
                 child: Icon(
                   Icons.calendar_today_outlined,
                   color: Color(0xff92929D),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 5,
               ),
               Padding(
-                padding: EdgeInsets.only(top: 30),
-                child: Text(
-                  '2021',
-                  style: TextStyle(
-                      color: Color(0xff92929D), fontFamily: 'popins2'),
-                ),
+                padding: const EdgeInsets.only(top: 30),
+                child: Consumer<FirebaseProvider>(
+                    builder: (BuildContext context, value, Widget? child) {
+                  return Text(
+                    value.detailsdata!.releaseDate.toString(),
+                    style: const TextStyle(
+                        color: Color(0xff92929D), fontFamily: 'popins2'),
+                  );
+                }),
               ),
-              VerticalDivider(
+              const VerticalDivider(
                 color: Colors.black,
                 width: 20,
                 thickness: 8,
                 indent: 20,
                 endIndent: 10,
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(top: 30),
                 child: Icon(
                   CupertinoIcons.clock,
                   color: Color(0xff92929D),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 5,
               ),
               Padding(
-                padding: EdgeInsets.only(top: 30),
-                child: Text(
-                  '148 minutes',
-                  style: TextStyle(
-                      color: Color(0xff92929D), fontFamily: 'popins2'),
-                ),
+                padding: const EdgeInsets.only(top: 30),
+                child: Consumer<FirebaseProvider>(
+                    builder: (BuildContext context, value, Widget? child) {
+                  return Text(
+                    '${value.detailsdata!.runtime}minutes',
+                    style: const TextStyle(
+                        color: Color(0xff92929D), fontFamily: 'popins2'),
+                  );
+                }),
               ),
-              VerticalDivider(
+              const VerticalDivider(
                 color: Colors.black,
                 width: 20,
                 thickness: 8,
                 indent: 20,
                 endIndent: 10,
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(top: 30),
                 child: Icon(
                   Icons.call_to_action,
                   color: Color(0xff92929D),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 5,
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(top: 30),
                 child: Text(
                   'Action',

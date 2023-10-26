@@ -3,6 +3,7 @@ import 'package:movieapp/model/detailsmodel.dart';
 import 'package:movieapp/services/firebase_services.dart';
 import '../apiservices/apifunction.dart';
 import '../model/playingmodel.dart';
+import '../model/reviewmodel.dart';
 
 class FirebaseProvider extends ChangeNotifier {
   bool loading = false;
@@ -20,6 +21,8 @@ class FirebaseProvider extends ChangeNotifier {
   List<Results>? searchdata;
 
   Details? detailsdata;
+
+  List<Review>? reviewdata;
 
   void signUpProvider(
       String email, String password, BuildContext context) async {
@@ -145,12 +148,26 @@ class FirebaseProvider extends ChangeNotifier {
   }
 
   void details(BuildContext context,String id)async{
-    //print('cvbn');
     try {
       loading = true;
       notifyListeners();
       detailsdata = await Api().getDetails(id);
       print(detailsdata);
+      loading = false;
+      notifyListeners();
+    } catch (e) {
+      loading = false;
+      notifyListeners();
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
+      print(e);
+    }
+  }
+  void reviews(BuildContext context,String id)async{
+    try {
+      loading = true;
+      notifyListeners();
+      reviewdata = await Api().getReviews(id);
       loading = false;
       notifyListeners();
     } catch (e) {
