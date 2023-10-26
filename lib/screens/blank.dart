@@ -32,12 +32,17 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
     return Scaffold(
       backgroundColor: const Color(0xff242A32),
       appBar: AppBar(
-        actions: const [
+        actions: [
           Padding(
-            padding: EdgeInsets.only(right: 15),
-            child: Icon(
-              Icons.bookmark,
-              color: Colors.white,
+            padding: const EdgeInsets.only(right: 15),
+            child: InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, '/watchlist');
+              },
+              child: const Icon(
+                Icons.bookmark,
+                color: Colors.white,
+              ),
             ),
           )
         ],
@@ -102,8 +107,8 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
                     const SizedBox(
                       width: 5,
                     ),
-                    Consumer<FirebaseProvider>(builder:
-                        (BuildContext context, value, Widget? child) {
+                    Consumer<FirebaseProvider>(
+                        builder: (BuildContext context, value, Widget? child) {
                       return Text(
                         value.detailsdata!.voteCount.toString(),
                         style: const TextStyle(color: Color(0xffFF9800)),
@@ -224,9 +229,13 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
             ),
           ]),
           Expanded(
-            child: TabBarView(
-                controller: _tabController1,
-                children:  [const AboutMovie(), Reviews(id: widget.id,), const Cast()]),
+            child: TabBarView(controller: _tabController1, children: [
+              const AboutMovie(),
+              Reviews(
+                id: widget.id,
+              ),
+              const Cast()
+            ]),
           )
         ],
       ),

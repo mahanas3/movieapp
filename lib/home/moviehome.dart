@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:movieapp/home/popular.dart';
 import 'package:movieapp/home/searchDelegate.dart';
 import 'package:movieapp/home/toprated.dart';
-import 'package:movieapp/home/tvshows.dart';
 import 'package:movieapp/home/upcoming.dart';
 import 'package:movieapp/provider/firebase_provider.dart';
 import 'package:provider/provider.dart';
