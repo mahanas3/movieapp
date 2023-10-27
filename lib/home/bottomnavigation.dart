@@ -17,7 +17,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   List navigation = [
     const Home(),
       const Search(),
-     const WatchList(),
+     const Watchlist(),
   ];
 
   void onitemTapped(int num) {

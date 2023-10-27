@@ -48,7 +48,7 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
         ],
         backgroundColor: const Color(0xff242A32),
         title: const Center(
-            child: Text('Detail',
+            child: Text('Details',
                 style: TextStyle(
                     color: Colors.white,
                     fontFamily: 'popins2',
@@ -60,16 +60,21 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
           Stack(clipBehavior: Clip.none, children: [
             Consumer<FirebaseProvider>(
                 builder: (BuildContext context, value, Widget? child) {
-              return Container(
-                height: 200,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(20)),
-                    image: DecorationImage(
-                        image: NetworkImage(
-                            'https://image.tmdb.org/t/p/original${value.detailsdata?.backdropPath}'),
-                        fit: BoxFit.fill)),
-              );
+              return value.loading
+                  ? const CircularProgressIndicator()
+                  : value.detailsdata == null
+                      ? const Text('Image not exist')
+                      : Container(
+                          height: 200,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20)),
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      'https://image.tmdb.org/t/p/original${value.detailsdata?.backdropPath}'),
+                                  fit: BoxFit.fill)),
+                        );
             }),
             Positioned(
               bottom: -80,
@@ -77,18 +82,22 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
                 padding: const EdgeInsets.only(left: 20),
                 child: Consumer<FirebaseProvider>(
                     builder: (BuildContext context, value, Widget? child) {
-                  return Container(
-                      height: 170,
-                      width: 110,
-                      alignment: AlignmentDirectional.bottomEnd,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        image: DecorationImage(
-                          image: NetworkImage(
-                              'https://image.tmdb.org/t/p/w780${value.detailsdata!.posterPath!}'),
-                          fit: BoxFit.fill,
-                        ),
-                      ));
+                  return value.loading
+                      ? const CircularProgressIndicator()
+                      : value.detailsdata == null
+                          ? const Text('Image not exist')
+                          : Container(
+                              height: 170,
+                              width: 110,
+                              alignment: AlignmentDirectional.bottomEnd,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                      'https://image.tmdb.org/t/p/w780${value.detailsdata!.posterPath!}'),
+                                  fit: BoxFit.fill,
+                                ),
+                              ));
                 }),
               ),
             ),
@@ -109,10 +118,15 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
                     ),
                     Consumer<FirebaseProvider>(
                         builder: (BuildContext context, value, Widget? child) {
-                      return Text(
-                        value.detailsdata!.voteCount.toString(),
-                        style: const TextStyle(color: Color(0xffFF9800)),
-                      );
+                      return value.loading
+                          ? const CircularProgressIndicator()
+                          : value.detailsdata == null
+                              ? const Text('No data')
+                              : Text(
+                                  value.detailsdata!.voteCount.toString(),
+                                  style:
+                                      const TextStyle(color: Color(0xffFF9800)),
+                                );
                     })
                   ],
                 ),
@@ -123,14 +137,18 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
             padding: const EdgeInsets.only(left: 155, top: 30),
             child: Consumer<FirebaseProvider>(
                 builder: (BuildContext context, value, Widget? child) {
-              return Text(
-                value.detailsdata!.title!,
-                style: const TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'popins2',
-                    fontWeight: FontWeight.w900,
-                    fontSize: 20),
-              );
+              return value.loading
+                  ? const CircularProgressIndicator()
+                  : value.detailsdata == null
+                      ? const Text('Title not found')
+                      : Text(
+                          value.detailsdata!.title!,
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'popins2',
+                              fontWeight: FontWeight.w900,
+                              fontSize: 20),
+                        );
             }),
           ),
           Row(
@@ -149,11 +167,16 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
                 padding: const EdgeInsets.only(top: 30),
                 child: Consumer<FirebaseProvider>(
                     builder: (BuildContext context, value, Widget? child) {
-                  return Text(
-                    value.detailsdata!.releaseDate.toString(),
-                    style: const TextStyle(
-                        color: Color(0xff92929D), fontFamily: 'popins2'),
-                  );
+                  return value.loading
+                      ? const CircularProgressIndicator()
+                      : value.detailsdata == null
+                          ? const Text('No data')
+                          : Text(
+                              value.detailsdata!.releaseDate.toString(),
+                              style: const TextStyle(
+                                  color: Color(0xff92929D),
+                                  fontFamily: 'popins2'),
+                            );
                 }),
               ),
               const VerticalDivider(
@@ -177,11 +200,16 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
                 padding: const EdgeInsets.only(top: 30),
                 child: Consumer<FirebaseProvider>(
                     builder: (BuildContext context, value, Widget? child) {
-                  return Text(
-                    '${value.detailsdata!.runtime}minutes',
-                    style: const TextStyle(
-                        color: Color(0xff92929D), fontFamily: 'popins2'),
-                  );
+                  return value.loading
+                      ? const CircularProgressIndicator()
+                      : value.detailsdata == null
+                          ? const Text('No data')
+                          : Text(
+                              '${value.detailsdata!.runtime}minutes',
+                              style: const TextStyle(
+                                  color: Color(0xff92929D),
+                                  fontFamily: 'popins2'),
+                            );
                 }),
               ),
               const VerticalDivider(
