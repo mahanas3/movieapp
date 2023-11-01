@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:movieapp/provider/firebase_provider.dart';
 import 'package:movieapp/routs/route.dart';
+import 'package:movieapp/services/theme_services.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -21,9 +21,14 @@ void main() async {
   ));
 }
 
-class Main extends StatelessWidget {
+class Main extends StatefulWidget {
   const Main({super.key});
 
+  @override
+  State<Main> createState() => _MainState();
+}
+
+class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
     final firebaseProvider = context.watch<FirebaseProvider>();
@@ -35,65 +40,12 @@ class Main extends StatelessWidget {
       return MaterialApp(
         title: 'Light Theme',
         themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,
-        darkTheme: _buildDarkTheme(),
-        theme: _buildLightTheme(),
+        darkTheme: ThemeServices.buildDarkTheme(),
+        theme: ThemeServices.buildLightTheme(),
         initialRoute: email == false ? '/' : '/home',
         onGenerateRoute: AppRoute.routesetting,
         debugShowCheckedModeBanner: false,
       );
     });
-  }
-
-  ThemeData _buildDarkTheme() {
-    return ThemeData(
-      buttonTheme: ButtonThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.black)),
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: Color(0xff242A32)),
-      primarySwatch: Colors.blue,
-      tabBarTheme: const TabBarTheme(labelColor: Colors.white),
-      colorScheme: ColorScheme.fromSwatch(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.grey,
-      ),
-      textTheme: TextTheme(
-        headline4: const TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: Colors.yellowAccent,
-        ),
-        headline3: GoogleFonts.oswald(
-          fontSize: 30,
-          fontStyle: FontStyle.italic,
-          color: Colors.red,
-        ),
-      ),
-    );
-  }
-
-  ThemeData _buildLightTheme() {
-    return ThemeData(
-      bottomNavigationBarTheme:
-          const BottomNavigationBarThemeData(backgroundColor: Colors.grey),
-      buttonTheme: ButtonThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.black)),
-      tabBarTheme: const TabBarTheme(labelColor: Colors.black),
-      colorScheme: ColorScheme.fromSwatch(
-        brightness: Brightness.light,
-        primarySwatch: Colors.blueGrey,
-      ),
-      textTheme: TextTheme(
-        headline4: const TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: Colors.green,
-        ),
-        headline3: GoogleFonts.oswald(
-          fontSize: 30,
-          fontStyle: FontStyle.italic,
-          color: Colors.orange,
-        ),
-      ),
-    );
   }
 }

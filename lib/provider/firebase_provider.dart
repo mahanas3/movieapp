@@ -185,5 +185,6 @@ class FirebaseProvider extends ChangeNotifier {
 
   set isDark(bool value) {
     _isDark = value;
+
     notifyListeners();
   }}
