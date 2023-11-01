@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ThemeServices{
-  static  ThemeData buildDarkTheme() {
+class ThemeServices {
+  static ThemeData buildDarkTheme() {
     return ThemeData(
       buttonTheme: ButtonThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.black)),
@@ -32,7 +32,7 @@ class ThemeServices{
   static ThemeData buildLightTheme() {
     return ThemeData(
       bottomNavigationBarTheme:
-      const BottomNavigationBarThemeData(backgroundColor: Colors.grey),
+          const BottomNavigationBarThemeData(backgroundColor: Colors.grey),
       buttonTheme: ButtonThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.black)),
       tabBarTheme: const TabBarTheme(labelColor: Colors.black),
@@ -53,4 +53,5 @@ class ThemeServices{
         ),
       ),
     );
-}}
+  }
+}
