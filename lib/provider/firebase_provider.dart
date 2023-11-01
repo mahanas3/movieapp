@@ -8,6 +8,10 @@ import '../model/reviewmodel.dart';
 class FirebaseProvider extends ChangeNotifier {
   bool loading = false;
 
+  bool _isDark=false;
+
+  bool get isDark => _isDark;
+
   List<Results>? nowplayingdata;
 
   List<Results>? populardata;
@@ -178,4 +182,8 @@ class FirebaseProvider extends ChangeNotifier {
       print(e);
     }
   }
-}
+
+  set isDark(bool value) {
+    _isDark = value;
+    notifyListeners();
+  }}

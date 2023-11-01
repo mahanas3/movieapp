@@ -36,7 +36,7 @@ class _SearchState extends State<Watchlist> {
                     fontWeight: FontWeight.w800,
                     fontSize: 20))),
       ),
-      backgroundColor: const Color(0xff242A32),
+      //backgroundColor: const Color(0xff242A32),
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: SingleChildScrollView(
@@ -73,7 +73,7 @@ class _SearchState extends State<Watchlist> {
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
                                   fontFamily: 'popins2',
-                                  color: Colors.white),
+                                  ),
                             ),
                             SizedBox(
                               height: 15,
@@ -89,7 +89,6 @@ class _SearchState extends State<Watchlist> {
                                 ),
                                 Text(
                                   '9.5',
-                                  style: TextStyle(color: Color(0xffFF9800)),
                                 )
                               ],
                             ),
@@ -100,7 +99,6 @@ class _SearchState extends State<Watchlist> {
                               children: [
                                 Icon(
                                   Icons.call_to_action,
-                                  color: Colors.white,
                                 ),
                                 SizedBox(
                                   width: 5,
@@ -108,7 +106,6 @@ class _SearchState extends State<Watchlist> {
                                 Text(
                                   'Action',
                                   style: TextStyle(
-                                      color: Colors.white,
                                       fontFamily: 'popins2'),
                                 )
                               ],
@@ -120,7 +117,6 @@ class _SearchState extends State<Watchlist> {
                               children: [
                                 Icon(
                                   Icons.calendar_today_outlined,
-                                  color: Colors.white,
                                 ),
                                 SizedBox(
                                   width: 5,
@@ -129,7 +125,7 @@ class _SearchState extends State<Watchlist> {
                                   '2019',
                                   style: TextStyle(
                                       fontFamily: 'popins2',
-                                      color: Colors.white),
+                                      ),
                                 )
                               ],
                             ),
@@ -138,14 +134,13 @@ class _SearchState extends State<Watchlist> {
                             ),
                             Row(
                               children: [
-                                Icon(CupertinoIcons.clock, color: Colors.white),
+                                Icon(CupertinoIcons.clock),
                                 SizedBox(
                                   width: 5,
                                 ),
                                 Text(
                                   '139 minutes',
                                   style: TextStyle(
-                                      color: Colors.white,
                                       fontFamily: 'popins2'),
                                 )
                               ],

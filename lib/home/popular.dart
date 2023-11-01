@@ -20,7 +20,7 @@ class _PopularState extends State<Popular> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xff242A32),
+       // backgroundColor: const Color(0xff242A32),
         body: Consumer<FirebaseProvider>(
             builder: (BuildContext context, value, Widget? child) {
           return value.loading

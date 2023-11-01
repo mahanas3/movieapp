@@ -60,10 +60,10 @@ class Login extends StatelessWidget {
                   icon1: const Icon(Icons.email_outlined),
                   controller: emailcontroller,
                   validator: (value) {
-                    if (value!.isEmpty ||
-                        !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                            .hasMatch(value!)) {
-                      return 'Enter valid Email!';
+                    if (value == null ||
+                        value.isEmpty ||
+                        !value.endsWith('@gmail.com')) {
+                      return 'Please enter valid email';
                     }
                     return null;
                   },
@@ -94,12 +94,15 @@ class Login extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
                           backgroundColor: const Color(0xff4361EE)),
-                      onPressed: () async{
-                        context.read<FirebaseProvider>().loginProvider(
-                            emailcontroller.text,
-                            passwordcontroller.text,
-                            context);
-                        SharedPreferences prefs=await SharedPreferences.getInstance();
+                      onPressed: () async {
+                        if (_formkey.currentState!.validate()) {
+                          context.read<FirebaseProvider>().loginProvider(
+                              emailcontroller.text,
+                              passwordcontroller.text,
+                              context);
+                        }
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
                         prefs.setBool('islogedIn', true);
                       },
                       child: const Text(
@@ -124,8 +127,7 @@ class Login extends StatelessWidget {
                       ),
                       child: TextButton(
                           onPressed: () {
-                             Navigator.pushNamed(context, '/signuptext');
-
+                            Navigator.pushNamed(context, '/signuptext');
                           },
                           child: const Text(
                             'SignUp',

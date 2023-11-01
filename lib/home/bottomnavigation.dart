@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movieapp/home/searchDelegate.dart';
 import 'package:movieapp/home/serachmovies.dart';
 import '../watchlist/watchlistes.dart';
 import 'moviehome.dart';
@@ -31,7 +30,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     return Scaffold(
       body: navigation[index],
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color(0xff242A32),
+       // backgroundColor: const Color(0xff242A32),
         currentIndex: index,
         onTap: onitemTapped,
         items: const [

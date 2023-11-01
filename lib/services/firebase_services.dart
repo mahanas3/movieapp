@@ -14,7 +14,7 @@ class FirebaseServices {
     try {
       UserCredential userCredential = await _firebaseAuth
           .signInWithEmailAndPassword(email: email, password: password);
-      return userCredential;
+        return userCredential;
     } catch (e) {
       print(e);
     }

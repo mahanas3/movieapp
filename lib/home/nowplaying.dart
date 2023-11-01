@@ -16,7 +16,7 @@ class _PlayingState extends State<Playing> {
   Widget build(BuildContext context) {
     context.read<FirebaseProvider>().nowPlaying(context);
     return Scaffold(
-      backgroundColor: const Color(0xff242A32),
+     // backgroundColor: const Color(0xff242A32),
       body: SingleChildScrollView(
         child: Consumer<FirebaseProvider>(
           builder: (BuildContext context, value, Widget? child) {

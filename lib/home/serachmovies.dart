@@ -39,7 +39,7 @@ class _SearchState extends State<Search> {
                     fontWeight: FontWeight.w800,
                     fontSize: 20))),
       ),
-      backgroundColor: const Color(0xff242A32),
+      //backgroundColor: const Color(0xff242A32),
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: SingleChildScrollView(
@@ -85,7 +85,7 @@ class _SearchState extends State<Search> {
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
                                   fontFamily: 'popins2',
-                                  color: Colors.white),
+                                 ),
                             ),
                             SizedBox(
                               height: 15,
@@ -112,7 +112,6 @@ class _SearchState extends State<Search> {
                               children: [
                                 Icon(
                                   Icons.call_to_action,
-                                  color: Colors.white,
                                 ),
                                 SizedBox(
                                   width: 5,
@@ -120,7 +119,6 @@ class _SearchState extends State<Search> {
                                 Text(
                                   'Action',
                                   style: TextStyle(
-                                      color: Colors.white,
                                       fontFamily: 'popins2'),
                                 )
                               ],
@@ -132,7 +130,6 @@ class _SearchState extends State<Search> {
                               children: [
                                 Icon(
                                   Icons.calendar_today_outlined,
-                                  color: Colors.white,
                                 ),
                                 SizedBox(
                                   width: 5,
@@ -141,7 +138,7 @@ class _SearchState extends State<Search> {
                                   '2019',
                                   style: TextStyle(
                                       fontFamily: 'popins2',
-                                      color: Colors.white),
+                                    ),
                                 )
                               ],
                             ),
@@ -150,14 +147,13 @@ class _SearchState extends State<Search> {
                             ),
                             Row(
                               children: [
-                                Icon(CupertinoIcons.clock, color: Colors.white),
+                                Icon(CupertinoIcons.clock),
                                 SizedBox(
                                   width: 5,
                                 ),
                                 Text(
                                   '139 minutes',
                                   style: TextStyle(
-                                      color: Colors.white,
                                       fontFamily: 'popins2'),
                                 )
                               ],
