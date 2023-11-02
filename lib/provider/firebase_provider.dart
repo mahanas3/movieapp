@@ -8,7 +8,7 @@ import '../model/reviewmodel.dart';
 class FirebaseProvider extends ChangeNotifier {
   bool loading = false;
 
-  bool _isDark=false;
+  bool _isDark = false;
 
   bool get isDark => _isDark;
 
@@ -151,7 +151,7 @@ class FirebaseProvider extends ChangeNotifier {
     }
   }
 
-  void details(BuildContext context,String id)async{
+  void details(BuildContext context, String id) async {
     try {
       loading = true;
       notifyListeners();
@@ -167,7 +167,8 @@ class FirebaseProvider extends ChangeNotifier {
       print(e);
     }
   }
-  void reviews(BuildContext context,String id)async{
+
+  void reviews(BuildContext context, String id) async {
     try {
       loading = true;
       notifyListeners();
@@ -185,6 +186,6 @@ class FirebaseProvider extends ChangeNotifier {
 
   set isDark(bool value) {
     _isDark = value;
-
     notifyListeners();
-  }}
+  }
+}

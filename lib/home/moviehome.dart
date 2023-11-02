@@ -5,6 +5,7 @@ import 'package:movieapp/home/toprated.dart';
 import 'package:movieapp/home/upcoming.dart';
 import 'package:movieapp/provider/firebase_provider.dart';
 import 'package:provider/provider.dart';
+import '../utilities/dimensions.dart';
 import 'nowplaying.dart';
 
 class Home extends StatefulWidget {
@@ -68,7 +69,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 height: 30,
               ),
               SizedBox(
-                height: 50,
+                height: Dimensions.calc(context, 200),
                 width: 330,
                 child: Consumer<FirebaseProvider>(
                     builder: (BuildContext context, value, Widget? child) {

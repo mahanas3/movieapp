@@ -36,7 +36,7 @@ class AppRoute {
 
       case RoutName.watchlist:
         return MaterialPageRoute(
-          builder: (context) =>  Blank(id: '',),
+          builder: (context) => const Watchlist(),
         );
 
       default:
