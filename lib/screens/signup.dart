@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:movieapp/provider/firebase_provider.dart';
+import 'package:movieapp/utilities/dimensions.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -32,14 +33,14 @@ class Signup extends StatelessWidget {
             key: _formkey,
             child: Column(
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 60),
+                 Padding(
+                  padding: const EdgeInsets.only(top: 60),
                   child: Text(
                     'Create Account',
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 30,
+                        fontSize: Dimensions.heightCalc(context, 30),
                         fontFamily: 'popins2'),
                   ),
                 ),
@@ -54,8 +55,8 @@ class Signup extends StatelessWidget {
                         TextStyle(fontFamily: 'popins2', color: Colors.white),
                   ),
                 ),
-                const SizedBox(
-                  height: 30,
+                 SizedBox(
+                  height: Dimensions.heightCalc(context, 30),
                 ),
                 CustomTextField(
                   text1: 'Full Name',
@@ -133,8 +134,8 @@ class Signup extends StatelessWidget {
                   height: 30,
                 ),
                 SizedBox(
-                  height: 55,
-                  width: 200,
+                  height: Dimensions.heightCalc(context, 55),
+                  width: Dimensions.widthCalc(context, 200),
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(

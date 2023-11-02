@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movieapp/provider/firebase_provider.dart';
+import 'package:movieapp/utilities/dimensions.dart';
 import 'package:provider/provider.dart';
 
 class Reviews extends StatefulWidget {
@@ -27,7 +28,7 @@ class _ReviewsState extends State<Reviews> {
           child: Column(
             children: [
               Container(
-                height: 300,
+                height: Dimensions.heightCalc(context, 300),
                 child: Consumer<FirebaseProvider>(
                     builder: (BuildContext context, value, Widget? child) {
                   return ListView.builder(

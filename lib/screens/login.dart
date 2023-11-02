@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movieapp/provider/firebase_provider.dart';
+import 'package:movieapp/utilities/dimensions.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -29,14 +30,14 @@ class Login extends StatelessWidget {
                   padding: EdgeInsets.only(top: 100, left: 30),
                   child: Image(image: AssetImage('assets/images/login.png')),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(right: 150),
+                 Padding(
+                  padding: const EdgeInsets.only(right: 150),
                   child: Text(
                     'Login',
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 30,
+                        fontSize: Dimensions.heightCalc(context, 30),
                         fontFamily: 'popins2'),
                   ),
                 ),
@@ -87,8 +88,8 @@ class Login extends StatelessWidget {
                   height: 20,
                 ),
                 SizedBox(
-                  height: 55,
-                  width: 200,
+                  height: Dimensions.heightCalc(context, 55),
+                  width: Dimensions.widthCalc(context, 200),
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(

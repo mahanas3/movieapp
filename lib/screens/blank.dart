@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movieapp/provider/firebase_provider.dart';
+import 'package:movieapp/utilities/dimensions.dart';
 import 'package:provider/provider.dart';
 import '../watchlist/aboutmovie.dart';
 import '../watchlist/cast.dart';
@@ -47,13 +48,13 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
           )
         ],
         backgroundColor: const Color(0xff242A32),
-        title: const Center(
+        title:  Center(
             child: Text('Details',
                 style: TextStyle(
                     color: Colors.white,
                     fontFamily: 'popins2',
                     fontWeight: FontWeight.w800,
-                    fontSize: 20))),
+                    fontSize: Dimensions.heightCalc(context, 20)))),
       ),
       body: Column(
         children: [
@@ -65,7 +66,7 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
                   : value.detailsdata == null
                       ? const Text('Image not exist')
                       : Container(
-                          height: 200,
+                          height: Dimensions.heightCalc(context, 200),
                           width: double.infinity,
                           decoration: BoxDecoration(
                               borderRadius:
@@ -87,8 +88,8 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
                       : value.detailsdata == null
                           ? const Text('Image not exist')
                           : Container(
-                              height: 170,
-                              width: 110,
+                              height: Dimensions.heightCalc(context, 170),
+                              width: Dimensions.widthCalc(context, 110),
                               alignment: AlignmentDirectional.bottomEnd,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30),
@@ -106,7 +107,7 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
               right: 50,
               child: Container(
                 height: 30,
-                width: 65,
+                width: Dimensions.widthCalc(context, 65),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: const Color(0xff67686D)),
@@ -143,11 +144,11 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
                       ? const Text('Title not found')
                       : Text(
                           value.detailsdata!.title!,
-                          style: const TextStyle(
+                          style:  TextStyle(
                               color: Colors.white,
                               fontFamily: 'popins2',
                               fontWeight: FontWeight.w900,
-                              fontSize: 20),
+                              fontSize: Dimensions.heightCalc(context, 20)),
                         );
             }),
           ),

@@ -51,26 +51,26 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 10),
+               Padding(
+                padding: const EdgeInsets.only(left: 10),
                 child: Align(
                   alignment: Alignment.bottomLeft,
                   child: Text(
                     'What do you want to watch?',
                     style: TextStyle(
                         fontFamily: 'popins2',
-                        fontSize: 18,
+                        fontSize: Dimensions.heightCalc(context, 18),
                         fontWeight: FontWeight.w600,
                         color: Colors.white),
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 30,
+               SizedBox(
+                height: Dimensions.heightCalc(context, 30),
               ),
               SizedBox(
-                height: Dimensions.calc(context, 200),
-                width: 330,
+                height: Dimensions.heightCalc(context, 50),
+                width: Dimensions.widthCalc(context, 330),
                 child: Consumer<FirebaseProvider>(
                     builder: (BuildContext context, value, Widget? child) {
                   return value.loading
@@ -96,7 +96,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 height: 20,
               ),
               Container(
-                height: 210,
+                height: Dimensions.heightCalc(context, 210),
                 width: double.infinity,
                 child: Consumer<FirebaseProvider>(
                   builder: (BuildContext context, value, Widget? child) {
@@ -117,8 +117,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 shrinkWrap: true,
                                 itemBuilder: (BuildContext context, int index) {
                                   return Container(
-                                    height: 200,
-                                    width: 150,
+                                    height: Dimensions.heightCalc(context, 200),
+                                    width: Dimensions.widthCalc(context, 150),
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(20),
                                         image: DecorationImage(
@@ -136,8 +136,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   },
                 ),
               ),
-              const SizedBox(
-                height: 40,
+               SizedBox(
+                height: Dimensions.heightCalc(context, 40),
               ),
               TabBar(
                   indicatorColor: Theme.of(context).primaryColor,

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:movieapp/utilities/dimensions.dart';
 
 class Watchlist extends StatefulWidget {
   const Watchlist({super.key});
@@ -28,13 +29,13 @@ class _SearchState extends State<Watchlist> {
           )
         ],
         backgroundColor: const Color(0xff242A32),
-        title: const Center(
+        title:  Center(
             child: Text('WatchLists',
                 style: TextStyle(
                     color: Colors.white,
                     fontFamily: 'popins2',
                     fontWeight: FontWeight.w800,
-                    fontSize: 20))),
+                    fontSize: Dimensions.heightCalc(context, 20)))),
       ),
       //backgroundColor: const Color(0xff242A32),
       body: Padding(
@@ -53,8 +54,8 @@ class _SearchState extends State<Watchlist> {
                     child: Row(
                       children: [
                         Container(
-                          height: 200,
-                          width: 130,
+                          height: Dimensions.heightCalc(context, 200),
+                          width: Dimensions.widthCalc(context, 130),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
@@ -64,21 +65,21 @@ class _SearchState extends State<Watchlist> {
                         const SizedBox(
                           width: 10,
                         ),
-                        const Column(
+                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               'Spiderman',
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: Dimensions.heightCalc(context, 20),
                                   fontWeight: FontWeight.w600,
                                   fontFamily: 'popins2',
                                   ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             ),
-                            Row(
+                            const Row(
                               children: [
                                 Icon(
                                   Icons.star_border,
@@ -92,10 +93,10 @@ class _SearchState extends State<Watchlist> {
                                 )
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
-                            Row(
+                            const Row(
                               children: [
                                 Icon(
                                   Icons.call_to_action,
@@ -110,10 +111,10 @@ class _SearchState extends State<Watchlist> {
                                 )
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
-                            Row(
+                            const Row(
                               children: [
                                 Icon(
                                   Icons.calendar_today_outlined,
@@ -129,10 +130,10 @@ class _SearchState extends State<Watchlist> {
                                 )
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
-                            Row(
+                            const Row(
                               children: [
                                 Icon(CupertinoIcons.clock),
                                 SizedBox(

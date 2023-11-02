@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movieapp/provider/firebase_provider.dart';
+import 'package:movieapp/utilities/dimensions.dart';
 import 'package:provider/provider.dart';
 
 class CustomSearchedelegate extends SearchDelegate {
@@ -46,8 +47,8 @@ class CustomSearchedelegate extends SearchDelegate {
                           child: Row(
                             children: [
                               Container(
-                                height: 200,
-                                width: 130,
+                                height: Dimensions.heightCalc(context, 200),
+                                width: Dimensions.widthCalc(context, 130),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20),
                                     image: DecorationImage(
@@ -64,8 +65,8 @@ class CustomSearchedelegate extends SearchDelegate {
                                 children: [
                                   Text(
                                     value.searchdata![index].title!,
-                                    style: const TextStyle(
-                                        fontSize: 20,
+                                    style:  TextStyle(
+                                        fontSize: Dimensions.heightCalc(context, 20),
                                         fontWeight: FontWeight.w600,
                                         fontFamily: 'popins2',
                                         color: Colors.white),
@@ -176,8 +177,8 @@ class CustomSearchedelegate extends SearchDelegate {
                 child: Row(
                   children: [
                     Container(
-                      height: 200,
-                      width: 130,
+                      height: Dimensions.heightCalc(context, 200),
+                      width: Dimensions.widthCalc(context, 130),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           image: DecorationImage(
