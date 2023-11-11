@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:movieapp/routs/routname.dart';
-import 'package:movieapp/screens/blank.dart';
+import 'package:movieapp/screens/details.dart';
 import 'package:movieapp/screens/login.dart';
 import 'package:movieapp/screens/signup.dart';
+import 'package:movieapp/watchlist/video.dart';
 import 'package:movieapp/watchlist/watchlistes.dart';
 import '../home/bottomnavigation.dart';
 
@@ -37,6 +38,11 @@ class AppRoute {
       case RoutName.watchlist:
         return MaterialPageRoute(
           builder: (context) => const Watchlist(),
+        );
+
+      case RoutName.videoply:
+        return MaterialPageRoute(
+          builder: (context) => const Video(),
         );
 
       default:

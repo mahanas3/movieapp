@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:movieapp/database/database_services.dart';
 import 'package:movieapp/model/detailsmodel.dart';
 import 'package:movieapp/services/firebase_services.dart';
+import 'package:video_player/video_player.dart';
 import '../apiservices/apifunction.dart';
 import '../model/playingmodel.dart';
 import '../model/reviewmodel.dart';
@@ -28,8 +30,17 @@ class FirebaseProvider extends ChangeNotifier {
 
   List<Review>? reviewdata;
 
-  void signUpProvider(
-      String email, String password, BuildContext context) async {
+  List<Details>? users;
+
+  Details? videodata;
+
+  VideoPlayerController? _controller;
+
+  VideoPlayerController get controller => _controller!;
+
+
+  void signUpProvider(String email, String password,
+      BuildContext context) async {
     try {
       await FirebaseServices().createRegistration(email, password);
       Navigator.pushNamed(context, '/home');
@@ -41,8 +52,8 @@ class FirebaseProvider extends ChangeNotifier {
     }
   }
 
-  void loginProvider(
-      String email, String password, BuildContext context) async {
+  void loginProvider(String email, String password,
+      BuildContext context) async {
     try {
       await FirebaseServices().signInWithEmailandPassword(email, password);
       Navigator.pushNamed(context, '/home');
@@ -188,4 +199,62 @@ class FirebaseProvider extends ChangeNotifier {
     _isDark = value;
     notifyListeners();
   }
-}
+
+  Future loadUsers(BuildContext context) async {
+    try {
+      loading = true;
+      notifyListeners();
+      List<Details> users = await Db().getDetails();
+      loading = false;
+      notifyListeners();
+      return users;
+    } catch (e) {
+      loading = false;
+      notifyListeners();
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+  }
+
+  Future<void> addUser(Details details, BuildContext context) async {
+    try {
+      loading = true;
+      notifyListeners();
+      await Db().insert(details);
+      loading = false;
+      notifyListeners();
+    } catch (e) {
+      loading = false;
+      notifyListeners();
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+  }
+// void video(BuildContext context, String id) async {
+//   try {
+//     loading = true;
+//     notifyListeners();
+//     videodata = await Api().getVideo(id);
+//     print(videodata);
+//     loading = false;
+//     notifyListeners();
+//   } catch (e) {
+//     loading = false;
+//     notifyListeners();
+//     ScaffoldMessenger.of(context)
+//         .showSnackBar(SnackBar(content: Text(e.toString())));
+//     print(e);
+//   }
+// }
+
+// Future<void> initializeVideo(String videoUrl) async {
+//   _controller = VideoPlayerController.network(videoUrl);
+//   await _controller!.initialize();
+//   notifyListeners();
+// }
+//
+// void disposeVideo() {
+//   _controller?.dispose();
+// }
+// Future video()
+// }

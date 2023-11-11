@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:movieapp/model/detailsmodel.dart';
 import 'package:movieapp/model/playingmodel.dart';
 import 'package:movieapp/utilities/networkerror.dart';
+import 'package:movieapp/watchlist/video.dart';
 import '../model/reviewmodel.dart';
 
 class Api {
@@ -114,4 +115,16 @@ class Api {
       throw NetworkError.networkError(reviewresponse.statusCode);
     }
   }
+
+  Future getVideo(String id) async {
+    final videoresponse = await http.get(Uri.parse(
+        'https://api.themoviedb.org/3/movie/$id?api_key=108bf3bd3841b1bc748b170761656099'));
+    if (videoresponse.statusCode == 200) {
+      var jsonData8 = jsonDecode(videoresponse.body);
+      var moviedetails = Details.fromJson(jsonData8);
+      return moviedetails;
+    }
+    throw NetworkError.networkError(videoresponse.statusCode);
+  }
 }
+

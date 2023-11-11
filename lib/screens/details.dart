@@ -24,6 +24,7 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
     // TODO: implement initState
     print(widget.id);
     context.read<FirebaseProvider>().details(context, widget.id);
+    //context.read<FirebaseProvider>().video(context, widget.id);
 
     super.initState();
     _tabController1 = TabController(length: 3, vsync: this);
@@ -38,6 +39,7 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
             padding: const EdgeInsets.only(right: 15),
             child: InkWell(
               onTap: () {
+                context.read<FirebaseProvider>().loadUsers(context);
                 Navigator.pushNamed(context, '/watchlist');
               },
               child: const Icon(
@@ -48,7 +50,7 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
           )
         ],
         backgroundColor: const Color(0xff242A32),
-        title:  Center(
+        title: Center(
             child: Text('Details',
                 style: TextStyle(
                     color: Colors.white,
@@ -106,7 +108,7 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
               bottom: 10,
               right: 50,
               child: Container(
-                height: 30,
+                height: Dimensions.heightCalc(context, 30),
                 width: Dimensions.widthCalc(context, 65),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -132,6 +134,27 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
                   ],
                 ),
               ),
+            ),
+            Positioned(
+              top: 160,
+              left: 150,
+              child: Consumer<FirebaseProvider>(
+                  builder: (BuildContext context, value, Widget? child) {
+                return InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/videoply',
+                        arguments: value.videodata!.id);
+                  },
+                  child: Container(
+                    height: 30,
+                    width: 65,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.black87),
+                    child: const Icon(Icons.play_circle),
+                  ),
+                );
+              }),
             )
           ]),
           Padding(
@@ -144,7 +167,7 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
                       ? const Text('Title not found')
                       : Text(
                           value.detailsdata!.title!,
-                          style:  TextStyle(
+                          style: TextStyle(
                               color: Colors.white,
                               fontFamily: 'popins2',
                               fontWeight: FontWeight.w900,

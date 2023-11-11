@@ -5,4 +5,5 @@ class RoutName{
   static const String signintextpage='/signintext';
   static const String playinging='/blank';
   static const String watchlist='/watchlist';
+  static const String videoply='/videoply';
 }

@@ -11,12 +11,10 @@ class Playing extends StatefulWidget {
 
 class _PlayingState extends State<Playing> {
   @override
-
-
   Widget build(BuildContext context) {
     context.read<FirebaseProvider>().nowPlaying(context);
     return Scaffold(
-     // backgroundColor: const Color(0xff242A32),
+      // backgroundColor: const Color(0xff242A32),
       body: SingleChildScrollView(
         child: Consumer<FirebaseProvider>(
           builder: (BuildContext context, value, Widget? child) {
@@ -24,11 +22,11 @@ class _PlayingState extends State<Playing> {
                 ? const CircularProgressIndicator()
                 : value.nowplayingdata == null
                     ? const Center(
-                      child: Text(
+                        child: Text(
                           'No data',
                           style: TextStyle(color: Colors.white),
                         ),
-                    )
+                      )
                     : GridView.builder(
                         itemCount: value.nowplayingdata!.length,
                         physics: const NeverScrollableScrollPhysics(),
@@ -43,7 +41,9 @@ class _PlayingState extends State<Playing> {
                           return SizedBox(
                             child: InkWell(
                               onTap: () {
-                                Navigator.pushNamed(context, '/blank',arguments: value.nowplayingdata![index].id.toString());
+                                Navigator.pushNamed(context, '/blank',
+                                    arguments: value.nowplayingdata![index].id
+                                        .toString());
                               },
                               child: Container(
                                 decoration: BoxDecoration(

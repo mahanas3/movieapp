@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:movieapp/provider/firebase_provider.dart';
 import 'package:movieapp/utilities/dimensions.dart';
+import 'package:provider/provider.dart';
 
 class Watchlist extends StatefulWidget {
   const Watchlist({super.key});
@@ -10,6 +12,15 @@ class Watchlist extends StatefulWidget {
 }
 
 class _SearchState extends State<Watchlist> {
+
+  var details;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // context.read<FirebaseProvider>().loadUsers(context);
+    // context.read<FirebaseProvider>().addUser(details,context);
+  }
   List filmimages = [
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl7Lc-RGJiHw764puwyAElGyy6_pJi5f7YeA&usqp=CAU',
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMpHAJj9qDK_ZxenCgb_0otJHiRDp-RKqcCw&usqp=CAU'
