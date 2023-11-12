@@ -24,7 +24,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
+    Future.delayed(Duration.zero, () {
     context.read<FirebaseProvider>().moviesList(context);
+    });
   }
 
   Widget build(BuildContext context) {

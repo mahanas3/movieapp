@@ -257,4 +257,4 @@ class FirebaseProvider extends ChangeNotifier {
 //   _controller?.dispose();
 // }
 // Future video()
-// }
+ }

@@ -20,54 +20,8 @@ class _VideoState extends State<Video> {
   void initState() {
     // TODO: implement initState
 
-    _controller = VideoPlayerController.networkUrl(videoUrl);
+    //_controller = VideoPlayerController.networkUrl(videoUrl);
     _initializeVideoPlayerFuture = _controller?.initialize();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     super.initState();
   }
