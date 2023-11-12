@@ -14,7 +14,10 @@ class _PopularState extends State<Popular> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<FirebaseProvider>().popularMovie(context);
+    Future.delayed(Duration.zero, ()
+    {
+      context.read<FirebaseProvider>().popularMovie(context);
+    });
   }
 
   @override

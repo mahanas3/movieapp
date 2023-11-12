@@ -14,7 +14,10 @@ class _UpcomingState extends State<Upcoming> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<FirebaseProvider>().upcomingMovie(context);
+    Future.delayed(Duration.zero, ()
+    {
+      context.read<FirebaseProvider>().upcomingMovie(context);
+    });
   }
 
   @override

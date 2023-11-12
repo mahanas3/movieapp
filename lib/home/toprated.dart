@@ -14,7 +14,10 @@ class _TopRatedState extends State<TopRated> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<FirebaseProvider>().topRatedMovies(context);
+    Future.delayed(Duration.zero, ()
+    {
+      context.read<FirebaseProvider>().topRatedMovies(context);
+    });
   }
 
   @override

@@ -11,8 +11,17 @@ class Playing extends StatefulWidget {
 
 class _PlayingState extends State<Playing> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Future.delayed(Duration.zero, () {
+      context.read<FirebaseProvider>().nowPlaying(context);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    context.read<FirebaseProvider>().nowPlaying(context);
+    //context.read<FirebaseProvider>().nowPlaying(context);
     return Scaffold(
       // backgroundColor: const Color(0xff242A32),
       body: SingleChildScrollView(

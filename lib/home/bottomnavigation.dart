@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movieapp/home/serachmovies.dart';
+import 'package:movieapp/home/profile.dart';
 import '../watchlist/watchlistes.dart';
 import 'moviehome.dart';
 
@@ -15,8 +15,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
   int index = 0;
   List navigation = [
     const Home(),
-      const Search(),
-     const Watchlist(),
+    const Watchlist(),
+    const Profile(),
   ];
 
   void onitemTapped(int num) {
@@ -30,7 +30,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     return Scaffold(
       body: navigation[index],
       bottomNavigationBar: BottomNavigationBar(
-       // backgroundColor: const Color(0xff242A32),
+        // backgroundColor: const Color(0xff242A32),
         currentIndex: index,
         onTap: onitemTapped,
         items: const [
@@ -40,10 +40,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
               ),
               label: 'Home'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.search_outlined), label: 'Search'),
+              icon: Icon(Icons.bookmark), label: 'Watchlist'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.bookmark), label: 'Watch list'),
-
+              icon: Icon(Icons.connect_without_contact_outlined), label: 'Profile'),
         ],
       ),
     );
