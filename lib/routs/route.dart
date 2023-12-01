@@ -40,10 +40,10 @@ class AppRoute {
           builder: (context) => const Watchlist(),
         );
 
-      case RoutName.videoply:
-        return MaterialPageRoute(
-          builder: (context) => const Video(),
-        );
+      // case RoutName.videoply:
+      //   return MaterialPageRoute(
+      //     builder: (context) => const Video(videoUrl: '',),
+      //   );
 
       default:
         {

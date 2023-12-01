@@ -45,6 +45,7 @@ dependencies:
   sqflite: ^2.3.0
   path: ^1.8.0
   video_player: ^2.8.1
+  chewie:
 
 
 

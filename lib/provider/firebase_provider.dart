@@ -230,31 +230,15 @@ class FirebaseProvider extends ChangeNotifier {
           .showSnackBar(SnackBar(content: Text(e.toString())));
     }
   }
-// void video(BuildContext context, String id) async {
-//   try {
-//     loading = true;
-//     notifyListeners();
-//     videodata = await Api().getVideo(id);
-//     print(videodata);
-//     loading = false;
-//     notifyListeners();
-//   } catch (e) {
-//     loading = false;
-//     notifyListeners();
-//     ScaffoldMessenger.of(context)
-//         .showSnackBar(SnackBar(content: Text(e.toString())));
-//     print(e);
-//   }
-// }
 
-// Future<void> initializeVideo(String videoUrl) async {
-//   _controller = VideoPlayerController.network(videoUrl);
-//   await _controller!.initialize();
-//   notifyListeners();
-// }
-//
-// void disposeVideo() {
-//   _controller?.dispose();
-// }
-// Future video()
+  void initializeController(String videoUrl) {
+    _controller = VideoPlayerController.network(videoUrl)
+      ..initialize().then((_) {
+        notifyListeners();
+      });
+  }
+
+  void disposeController() {
+    _controller?.dispose();
+  }
  }

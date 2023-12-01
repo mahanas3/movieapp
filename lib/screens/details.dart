@@ -22,10 +22,9 @@ class _BlankState extends State<Blank> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     // TODO: implement initState
-    print(widget.id);
-    context.read<FirebaseProvider>().details(context, widget.id);
-    //context.read<FirebaseProvider>().video(context, widget.id);
-
+    Future.delayed(Duration.zero, () {
+      context.read<FirebaseProvider>().details(context, widget.id);
+    });
     super.initState();
     _tabController1 = TabController(length: 3, vsync: this);
   }

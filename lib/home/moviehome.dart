@@ -144,8 +144,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               TabBar(
                   indicatorColor: Theme.of(context).primaryColor,
                   controller: _tabController,
-                  //labelColor: Theme.of(context),
-                  //labelColor: const Color(0xff67686D),
                   isScrollable: true,
                   tabs: const [
                     Tab(

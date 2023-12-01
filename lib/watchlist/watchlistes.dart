@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movieapp/provider/firebase_provider.dart';
 import 'package:movieapp/utilities/dimensions.dart';
-import 'package:provider/provider.dart';
 
 class Watchlist extends StatefulWidget {
   const Watchlist({super.key});
