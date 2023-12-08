@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 import 'package:movieapp/model/detailsmodel.dart';
 import 'package:movieapp/model/playingmodel.dart';
 import 'package:movieapp/utilities/networkerror.dart';
-import 'package:movieapp/watchlist/video.dart';
 import '../model/reviewmodel.dart';
 
 class Api {

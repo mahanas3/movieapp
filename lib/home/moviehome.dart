@@ -94,8 +94,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           ));
                 }),
               ),
-              const SizedBox(
-                height: 20,
+               SizedBox(
+                height: Dimensions.heightCalc(context, 20),
               ),
               Container(
                 height: Dimensions.heightCalc(context, 210),
@@ -131,8 +131,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 },
                                 separatorBuilder:
                                     (BuildContext context, int index) =>
-                                        const SizedBox(
-                                  width: 20,
+                                         SizedBox(
+                                  width: Dimensions.widthCalc(context, 20),
                                 ),
                               );
                   },
