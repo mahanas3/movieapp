@@ -102,7 +102,6 @@ class FirebaseProvider extends ChangeNotifier {
       loading = true;
       notifyListeners();
       upcomingdata = await Api().getUpcoming();
-      print(upcomingdata);
       loading = false;
       notifyListeners();
     } catch (e) {

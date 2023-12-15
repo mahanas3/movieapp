@@ -30,7 +30,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
     return Scaffold(
       body: navigation[index],
       bottomNavigationBar: BottomNavigationBar(
-        // backgroundColor: const Color(0xff242A32),
         currentIndex: index,
         onTap: onitemTapped,
         items: const [

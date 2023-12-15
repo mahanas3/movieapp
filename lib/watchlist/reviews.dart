@@ -15,7 +15,6 @@ class Reviews extends StatefulWidget {
 class _ReviewsState extends State<Reviews> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     context.read<FirebaseProvider>().reviews(context, widget.id);
   }
@@ -33,7 +32,6 @@ class _ReviewsState extends State<Reviews> {
                     builder: (BuildContext context, value, Widget? child) {
                   return ListView.builder(
                       itemCount: value.reviewdata?.length,
-
                       itemBuilder: (BuildContext context, int index) {
                         return ListTile(
                           leading: const Image(
