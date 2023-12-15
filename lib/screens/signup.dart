@@ -149,7 +149,7 @@ class Signup extends StatelessWidget {
                               context);
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          prefs.setBool('islogedIn', true);
+                          prefs.setBool('isloggedIn', true);
                         }
                       },
                       child: const Text(

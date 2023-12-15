@@ -17,6 +17,7 @@ void main() async {
 
   runApp(ChangeNotifierProvider(
     create: (context) => FirebaseProvider(),
+
     child: const Main(),
   ));
 }
